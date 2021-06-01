@@ -17,16 +17,16 @@ ActiveRecord::Schema.define(version: 2021_06_01_221529) do
     t.boolean "band?"
     t.string "genre"
     t.boolean "has_producer?"
-    t.decimal "budget"
+    t.float "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
   end
 
-  create_table "recording_session", force: :cascade do |t|
+  create_table "recording_sessions", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.decimal "per_hour"
+    t.float "per_hour"
     t.integer "hours_per_day"
     t.text "specialized_gear"
     t.integer "user_id"
