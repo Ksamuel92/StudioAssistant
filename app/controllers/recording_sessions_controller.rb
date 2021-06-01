@@ -1,4 +1,4 @@
-class RecordingSessions < ApplicationController
+class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions
   get "/recording_sessions" do
