@@ -1,4 +1,4 @@
-class CreateRecordingSessionstartDate:dates < ActiveRecord::Migration
+class CreateRecordingSessions < ActiveRecord::Migration[5.2]
   def change
     create_table :recording_session do |t|
       t.date :start_date
