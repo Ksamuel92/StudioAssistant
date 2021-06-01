@@ -5,5 +5,6 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 run ApplicationController
+use ClientsController
 use RecordingSessionsController
 use UsersController
