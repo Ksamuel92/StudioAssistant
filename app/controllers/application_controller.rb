@@ -37,8 +37,12 @@ class ApplicationController < Sinatra::Base
 
   post "/login" do
     user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect to "/recording_sessions"
+    else
+      redirect to "/login"
+      #error message?
   end
 
 
