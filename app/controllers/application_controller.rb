@@ -12,8 +12,9 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  helpers do
-  def current_user(session)
+helpers do
+
+  def current_user
     @current_user = User.find_by(id: session[:user_id])
     end
 
@@ -21,5 +22,9 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
+    def log_out
+      session.delete(:user_id)
+    end
+end
 
 end
