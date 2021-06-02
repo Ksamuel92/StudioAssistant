@@ -1,8 +1,8 @@
 require 'faker'
 
-Faker::Name.name      #=> "Christophe Bartell"
+# Faker::Name.name      #=> "Christophe Bartell"
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
+# Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
 
 
 User.create(:name => "#{Faker::Name.name}", :email => "#{Faker::Internet.email}", :location =>"#{Faker::Address.city}", :password => "#{Faker::String.random}")
