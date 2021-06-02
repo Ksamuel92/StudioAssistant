@@ -1,37 +1,37 @@
 class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions
-  get "/recording_sessions" do
+  get "/recordingsessions" do
     erb :"/recording_sessions/index.html"
   end
 
   # GET: /recording_sessions/new
-  get "/recording_sessions/new" do
+  get "/recordingsessions/new" do
     erb :"/recording_sessions/new.html"
   end
 
   # POST: /recording_sessions
-  post "/recording_sessions" do
-    redirect "/recording_sessions"
+  post "/recordingsessions" do
+    redirect "/recordingsessions"
   end
 
   # GET: /recording_sessions/5
-  get "/recording_sessions/:id" do
+  get "/recordingsessions/:id" do
     erb :"/recording_sessions/show.html"
   end
 
   # GET: /recording_sessions/5/edit
-  get "/recording_sessions/:id/edit" do
+  get "/recordingsessions/:id/edit" do
     erb :"/recording_sessions/edit.html"
   end
 
   # PATCH: /recording_sessions/5
-  patch "/recording_sessions/:id" do
-    redirect "/recording_sessions/:id"
+  patch "/recordingsessions/:id" do
+    redirect "/recordingsessions/:id"
   end
 
   # DELETE: /recording_sessions/5/delete
-  delete "/recording_sessions/:id/delete" do
-    redirect "/recording_sessions"
+  delete "/recordingsessions/:id/delete" do
+    redirect "/recordingsessions"
   end
 end
