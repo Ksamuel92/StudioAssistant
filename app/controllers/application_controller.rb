@@ -43,6 +43,7 @@ class ApplicationController < Sinatra::Base
     else
       redirect to "/login"
       #error message?
+    end
   end
 
 
