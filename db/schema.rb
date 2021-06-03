@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_135013) do
     t.boolean "band?"
     t.string "genre"
     t.boolean "has_producer?"
-    t.float "budget"
+    t.integer "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"

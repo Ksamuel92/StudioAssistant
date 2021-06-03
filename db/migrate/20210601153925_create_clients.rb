@@ -5,7 +5,7 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.boolean :band?
       t.string :genre
       t.boolean :has_producer?
-      t.float :budget
+      t.integer :budget
 
       t.timestamps null: false
     end
