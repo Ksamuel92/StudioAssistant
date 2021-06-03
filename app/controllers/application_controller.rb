@@ -57,6 +57,14 @@ helpers do
       !!session[:user_id]
     end
 
+    def can_edit?
+      if  @current_user != RecordingSession.find(params[:id]).user
+        redirect to "/recording_sessions"
+        #error message?
+      end
+    end
+
+    
     def log_out
       session.delete(:user_id)
     end
