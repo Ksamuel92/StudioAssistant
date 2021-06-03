@@ -3,7 +3,7 @@ class CreateRecordingSessions < ActiveRecord::Migration[5.2]
     create_table :recording_sessions do |t|
       t.date :start_date
       t.date :end_date
-      t.float :per_hour
+      t.integer :per_hour
       t.integer :hours_per_day
       t.text :specialized_gear
       t.integer :user_id

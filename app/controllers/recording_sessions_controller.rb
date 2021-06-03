@@ -23,8 +23,8 @@ class RecordingSessionsController < ApplicationController
 
   # POST: /recording_sessions
   post "/recordingsessions" do
-    binding.pry
-    param :per_hour, Float
+    # binding.pry
+    params[:recording_session][:per_hour].gsub(/^[$]/, "")
     client = Client.new(params[:client])
     recording_session = RecordingSession.new(params[:recording_session])
     if !client.save || !recording_session.save
@@ -34,10 +34,11 @@ class RecordingSessionsController < ApplicationController
       user = User.find_by_id(session[:user_id])
       user.clients = client
       user.recording_sessions = recording_session
+      redirect  "/recordingsessions"
     end
     #grabs params from recordingsessions/new and make new recordingsessions and clients, associating them both
     #make sure validations pass
-    redirect "/recordingsessions"
+    # redirect  "/recordingsessions"
   end
 
   # GET: /recording_sessions/5

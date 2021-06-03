@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_135013) do
   create_table "recording_sessions", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.float "per_hour"
+    t.integer "per_hour"
     t.integer "hours_per_day"
     t.text "specialized_gear"
     t.integer "user_id"
