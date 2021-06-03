@@ -1,1 +1,31 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h2> Create A New Session </h2>
+<div class="form-group">
+    <form method="POST" action="/recordingsessions">
+    <div id="new-session">
+    <ul>
+        <li><label for= "client_name">Client Name:</label></li>
+        <li><input type="text" name="client[name]" id="client_name"></li></br>
+        <li><label for= "client_email">Client Email:</label></li>
+        <li><input type="text" name="client[email]" id="client_email"></li></br>
+        <li><label for= "client_genre">Client Genre:</label></li>
+        <li><input type="text" name="client[genre]" id="client_genre"></li></br>
+        <li><label for = "start_date">Start Date: </label></li>
+        <li><input type="text" name="recording_session[start_date]" id="start_date"></li></br>
+        <li><label for = "end_date">End Date:</label></li>
+        <li><input type="text" name="recording_session[end_date]" id="end_date"></li></br>
+        <li><label for = "per_hour"> Rate Per Hour:</label></li>
+        <li><input type="text" name="recording_session[per_hour]" id="per_hour"></li></br>
+        <li><label for = "hours_per_day"> Hours Per Day:</label></li>
+       <li><input type="text" name="recording_session[hours_per_day]" id="hours_per_day"></li></br>
+    </div>
+    <h4>More Client Options </h4>
+    <h6>Check any that apply</h6>
+    <div id="client-options">
+    <ul>
+        <li><label for= "client_producer"> Is the client bringing their own producer(s)?</label></li>
+        <li><input type="checkbox" id="client_yes" name="client[has_producer]" value="true"></li>
+        <li><label for= "client_band"> Is the client bringing their own band?</label></li>
+        <li><input type="checkbox" id="client_yes" name="client[band?]" value="true"></li>
+        <li><label for= "client_producer"> Is the client bringing their own drums?</label></li>
+        <li><input type="checkbox" id="client_yes" name="client[drums?]" value="true"></li>
+    </form>
