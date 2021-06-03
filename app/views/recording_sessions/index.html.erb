@@ -3,7 +3,7 @@
 <% if @recording_sessions != nil %>
     <div class="sessionbox">
         <ul>
-            <%@recording_sessions.all.each do |session|%>
+            <%@user_recording_sessions.all.each do |session|%>
                 <li> <%= session.client %> - <%= session.genre %> </li>
                 <li> <%= session.start_date %> - <%= session.end_date %> </li>
                 <li> <%= session.hours_per_day%> - <%= session.per_hour %> </li>

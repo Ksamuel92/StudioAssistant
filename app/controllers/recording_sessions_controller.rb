@@ -5,8 +5,12 @@ class RecordingSessionsController < ApplicationController
     if !is_logged_in?
       redirect to '/login'
     end
-    current_user
-    @recording_sessions = RecordingSession.find_by_user_id(current_user.id)
+    recording_sessions = RecordingSession.all
+    recording_sessions.collect do |session| 
+    session.user_id == current_user.id
+    end
+    @user_recording_sessions = recording_sessions
+
     
     #perhaps can organize by client or by date?
     #Brings up a list of all recording_sessions that belong to the current user
@@ -23,8 +27,9 @@ class RecordingSessionsController < ApplicationController
 
   # POST: /recording_sessions
   post "/recordingsessions" do
-    # binding.pry
-    params[:recording_session][:per_hour].gsub(/^[$]/, "")
+    binding.pry
+    RecordingSession.parse_date(params[:recording_session][:start_date])
+    RecordingSession.parse_date(params[:recording_session][:end_date])
     client = Client.new(params[:client])
     recording_session = RecordingSession.new(params[:recording_session])
     if !client.save || !recording_session.save
@@ -32,8 +37,8 @@ class RecordingSessionsController < ApplicationController
       #error message
     else
       user = User.find_by_id(session[:user_id])
-      user.clients = client
-      user.recording_sessions = recording_session
+      user.clients << client
+      user.recording_sessions << recording_session
       redirect  "/recordingsessions"
     end
     #grabs params from recordingsessions/new and make new recordingsessions and clients, associating them both
