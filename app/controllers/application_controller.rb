@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
 
   get "/signup" do
 
-    erb :"sessions/signup"
+    erb :"registration/signup"
   end
 
   post "/signup" do
