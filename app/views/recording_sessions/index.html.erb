@@ -3,8 +3,8 @@
 <% if @recording_sessions != nil %>
     <div class="sessionbox">
         <ul>
-            <%@user_recording_sessions.all.each do |session|%>
-                <li> <%= session.client %> - <%= session.genre %> </li>
+            <%@recording_sessions.all.each do |session|%>
+                <li> <%= session.client%></li>
                 <li> <%= session.start_date %> - <%= session.end_date %> </li>
                 <li> <%= session.hours_per_day%> - <%= session.per_hour %> </li>
                 <li><a href="/recordingsessions/<%= session.client %>/<%= session.id %>"> View Your Session </li> 
