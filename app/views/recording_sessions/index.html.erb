@@ -1,24 +1,23 @@
 <h1>This is the Model's index page.</h1>
 <h2>Your Sessions</h2>
-
-<div class="sessionbox">
-    <ul>
-        <%@recording_sessions.all.each do |session|%>
-            <li> <%= session.client %> - <%= session.genre %> </li>
-            <li> <%= session.start_date %> - <%= session.end_date %> </li>
-            <li> <%= session.hours_per_day%> - <%= session.per_hour %> </li>
-            <li><a href="/recordingsessions/<%= session.client %>/<%= session.id %>"> </li> 
-        <% end %>
-    </ul>
-</div>
-
-
-
-
+<% if @recording_sessions != nil %>
+    <div class="sessionbox">
+        <ul>
+            <%@recording_sessions.all.each do |session|%>
+                <li> <%= session.client %> - <%= session.genre %> </li>
+                <li> <%= session.start_date %> - <%= session.end_date %> </li>
+                <li> <%= session.hours_per_day%> - <%= session.per_hour %> </li>
+                <li><a href="/recordingsessions/<%= session.client %>/<%= session.id %>"> View Your Session </li> 
+            <% end %>
+        </ul>
+    </div>
+<% else %>
+    <h3> Looks like you don't have any sessions yet!</h3>
+<% end %>
 
 <div class="linkbox">
     <ul>
         <li><a href="/recordingsessions/new"><input type="button" value = "New Session"></a></li>
-        <li><a href="/login"><input type="button" value = "Log In"></a></li>
+        <li><a href="/logout"><input type="button" value = "Log Out"></a></li>
     </ul>
 </div>

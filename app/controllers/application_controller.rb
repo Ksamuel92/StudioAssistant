@@ -46,6 +46,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get "/logout" do
+    log_out
+  end
+
 
 helpers do
 
@@ -67,6 +71,7 @@ helpers do
 
     def log_out
       session.delete(:user_id)
+      redirect to "/"
     end
 end
 
