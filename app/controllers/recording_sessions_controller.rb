@@ -23,6 +23,7 @@ class RecordingSessionsController < ApplicationController
 
   # POST: /recording_sessions
   post "/recordingsessions" do
+    # binding.pry
     #grabs params from recordingsessions/new and make new recordingsessions and clients, associating them both
     #make sure validations pass
     redirect "/recordingsessions"
