@@ -2,11 +2,12 @@ class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions
   get "/recordingsessions" do
-    if !is_logged_in
+    if !is_logged_in?
       redirect to '/login'
     end
     current_user
-    @recording_sessions = RecordingSession.find_by_user_id(@current_user.id)
+    @recording_sessions = RecordingSession.find_by_user_id(current_user.id)
+    
     #perhaps can organize by client or by date?
     #Brings up a list of all recording_sessions that belong to the current user
     #if no recording sessions exist that belong to the current user, let them know they have none and offer to take them to new

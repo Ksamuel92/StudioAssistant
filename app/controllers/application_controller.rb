@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
     else
       user.save
       session[:user_id] = user.id
-      redirect to "/recording_sessions"
+      redirect to "/recordingsessions"
     end
   end
 
