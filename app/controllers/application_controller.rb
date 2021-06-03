@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :index
   end
 
   get "/signup" do
@@ -64,7 +64,7 @@ helpers do
       end
     end
 
-    
+
     def log_out
       session.delete(:user_id)
     end
