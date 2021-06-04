@@ -7,6 +7,14 @@ class RecordingSession < ActiveRecord::Base
     # validates :start_date, :end_date, presence: true
     # validate :end_date_after_start_date
     # validates :email, presence: true
+    def find_by_slug(slug)
+        self.all.find{|i| i.slug == slug}
+    end
+
+    def slug
+        self.user.name.downcase.gsub(" ","-")
+    end
+  
 
 
     # def self.parse_date(date)
