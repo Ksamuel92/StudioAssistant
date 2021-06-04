@@ -27,9 +27,11 @@ class RecordingSessionsController < ApplicationController
   # POST: /recording_sessions
   post "/recordingsessions" do
     # binding.pry
-
+  #  if params[:recording_sessions][:start_date] = ""
+    # redirect to "/recordingsessions/new"
+    #error message
+  #  end
     remove_comma_from_integer(params[:client][:budget])
-    # params[:client][:budget].gsub(/[,]/,"")
     user = current_user
     client = Client.new(params[:client])
     recording_session = RecordingSession.new(params[:recording_session])

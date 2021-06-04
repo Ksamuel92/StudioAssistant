@@ -2,6 +2,7 @@ class RecordingSession < ActiveRecord::Base
     #model associations
     belongs_to :user
     belongs_to :client
+    validates :start_date, presence: true
     #model validations
     #check bookmarks for help validating dates
     # validates :start_date, :end_date, presence: true

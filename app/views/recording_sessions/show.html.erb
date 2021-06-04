@@ -1,6 +1,6 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 
-<h2>Hi, <%= @user.name %>! Here's what to expect for your session on <%= @recording_session.start_date %></h2>
+<h2>Hi, <strong><%= @user.name %></strong>! Here's what to expect for your session on <%= @recording_session.start_date %></h2>
 <div class="info-box" id="client-box">
 <p> <%= @client.name %> is our client. They have a <%= @client.genre %> project.</p>
 <p> <%if @client.budget %> Our client's budget is <%= @client.budget %>. If there's a problem with that, email them at <%= @client.email %>. 
