@@ -26,16 +26,22 @@ class RecordingSessionsController < ApplicationController
 
   # POST: /recording_sessions
   post "/recordingsessions" do
+    # binding.pry
+
+    remove_comma_from_integer(params[:client][:budget])
+    # params[:client][:budget].gsub(/[,]/,"")
+    user = current_user
     client = Client.new(params[:client])
     recording_session = RecordingSession.new(params[:recording_session])
+    
     if !client.save || !recording_session.save
       redirect to "/recordingsessions/new"
       #error message
     else
-      user = current_user
+
       user.recording_sessions << recording_session
       client.recording_sessions << recording_session
-      user.clients << client
+      # user.clients << client
       redirect  "/recordingsessions"
     end
     #grabs params from recordingsessions/new and make new recordingsessions and clients, associating them both

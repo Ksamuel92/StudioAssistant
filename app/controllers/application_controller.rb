@@ -67,6 +67,11 @@ helpers do
       redirect to "/"
     end
   
+    def remove_comma_from_integer(integer)
+      integer.gsub!(/[,]/,"")
+    end
+
+    
 
     def can_edit?
       if  @current_user != RecordingSession.find(params[:id]).user
