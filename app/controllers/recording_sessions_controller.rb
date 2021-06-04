@@ -49,9 +49,9 @@ class RecordingSessionsController < ApplicationController
     #Grabs session and shows user details of session (this includes dynamic details based on client information)
     #user should be able to edit session or client information (at this point, user creates both so should be able to edit both)
     @user = current_user
-    @recording_session = RecordingSession.find_by_slug(slug)
+    # binding.pry
+    @recording_session = RecordingSession.find_by_id(params[:id])
     @client = @recording_session.client
-    binding.pry
     erb :"/recording_sessions/show.html"
   end
 

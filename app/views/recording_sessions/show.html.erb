@@ -1,1 +1,10 @@
 <h1>This is the show page for an individual instance of your model.</h1>
+
+<h2>Hi, <%= @user.name %>! Here's what to expect for your session on <%= @recording_session.start_date %></h2>
+<p> <%= @client.name %> is our client. 
+<% if @client.band?%> They are bringing their own band.<% end %>,
+<% if @client.drums?%>They are bringing their own drums. <% end %>
+<% if @client.has_producer?%> They have a producer they have hired. <% end %>
+
+</p>
+<%= @recording_session%>

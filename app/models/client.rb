@@ -5,7 +5,7 @@ class Client < ActiveRecord::Base
     validates :email, presence: true#downcase emails
 
 
-    def find_by_slug(slug)
+    def self.find_by_slug(slug)
         self.all.find{|i| i.slug == slug}
     end
 
