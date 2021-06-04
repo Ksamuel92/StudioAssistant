@@ -5,7 +5,8 @@ class RecordingSessionsController < ApplicationController
     if !is_logged_in?
       redirect to '/login'
     end
-    @recording_sessions = RecordingSession.all
+    @user = current_user
+    @recording_sessions = current_user.recording_sessions
     # @user_recording_sessions = recording_sessions
 
     
@@ -24,16 +25,13 @@ class RecordingSessionsController < ApplicationController
 
   # POST: /recording_sessions
   post "/recordingsessions" do
-    # binding.pry
-    # RecordingSession.parse_date(params[:recording_session][:start_date])
-    # RecordingSession.parse_date(params[:recording_session][:end_date])
     client = Client.new(params[:client])
     recording_session = RecordingSession.new(params[:recording_session])
     if !client.save || !recording_session.save
       redirect to "/recordingsessions/new"
       #error message
     else
-      user = User.find_by_id(session[:user_id])
+      user = current_user
       user.recording_sessions << recording_session
       client.recording_sessions << recording_session
       user.clients << client
@@ -45,7 +43,7 @@ class RecordingSessionsController < ApplicationController
   end
 
   # GET: /recording_sessions/5
-  get "/recordingsessions/:slug" do
+  get "/recordingsessions/:slug/:id" do
     #what should slug be for recording session? Maybe two slugs, first one client, second one :id/date?
     #Grabs session and shows user details of session (this includes dynamic details based on client information)
     #user should be able to edit session or client information (at this point, user creates both so should be able to edit both)

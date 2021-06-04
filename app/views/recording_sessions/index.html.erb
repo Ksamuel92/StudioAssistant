@@ -4,10 +4,8 @@
     <div class="sessionbox">
         <ul>
             <%@recording_sessions.all.each do |session|%>
-                <li> <%= session.client%></li>
-                <li> <%= session.start_date %> - <%= session.end_date %> </li>
-                <li> <%= session.hours_per_day%> - <%= session.per_hour %> </li>
-                <li><a href="/recordingsessions/<%= session.client %>/<%= session.id %>"> View Your Session </li> 
+            <% if session.client_id == nil %>
+                <li><a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"> View Your Session </li> 
             <% end %>
         </ul>
     </div>

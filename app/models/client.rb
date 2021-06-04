@@ -10,7 +10,7 @@ class Client < ActiveRecord::Base
     end
 
     def slug
-        self.user.name.downcase.gsub(" ","-")
+        self.name.downcase.gsub(" ","-")
     end
   
 
