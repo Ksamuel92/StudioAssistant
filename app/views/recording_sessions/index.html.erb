@@ -1,11 +1,10 @@
 <h1>This is the Model's index page.</h1>
 <h2>Your Sessions</h2>
-<% if @recording_sessions != nil %>
+<% if @recording_sessions != [] %>
     <div class="sessionbox">
         <ul>
             <%@recording_sessions.all.each do |session|%>
-            <% if session.client_id == nil %>
-                <li><a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"> View Your Session </li> 
+                <li><a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"> View Your Session with <%=session.client.name%> </li> 
             <% end %>
         </ul>
     </div>

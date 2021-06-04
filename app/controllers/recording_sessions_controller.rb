@@ -7,6 +7,7 @@ class RecordingSessionsController < ApplicationController
     end
     @user = current_user
     @recording_sessions = current_user.recording_sessions
+    # binding.pry
     # @user_recording_sessions = recording_sessions
 
     
@@ -47,6 +48,10 @@ class RecordingSessionsController < ApplicationController
     #what should slug be for recording session? Maybe two slugs, first one client, second one :id/date?
     #Grabs session and shows user details of session (this includes dynamic details based on client information)
     #user should be able to edit session or client information (at this point, user creates both so should be able to edit both)
+    @user = current_user
+    @recording_session = RecordingSession.find_by_slug(slug)
+    @client = @recording_session.client
+    binding.pry
     erb :"/recording_sessions/show.html"
   end
 
