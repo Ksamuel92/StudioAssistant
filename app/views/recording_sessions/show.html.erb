@@ -3,16 +3,19 @@
 <h2>Hi, <%= @user.name %>! Here's what to expect for your session on <%= @recording_session.start_date %></h2>
 <div class="info-box" id="client-box">
 <p> <%= @client.name %> is our client. They have a <%= @client.genre %> project.</p>
-<p> Our client's budget is <%= @client.budget %>. If there's a problem with that, email them at <%= @client.email %>.</p>
+<p> <%if @client.budget %> Our client's budget is <%= @client.budget %>. If there's a problem with that, email them at <%= @client.email %>. 
+<% else %> You still need to contact your client at <%= @client.email %> to discuss budget. <% end %> </p>
 
-<%if @client.band?% || @client.drums? || @client.has_producer? %>
-<% if @client.band?%> They are bringing their own band.<% end %>,
-<% if @client.drums?%>They are bringing their own drums. <% end %>
+
+<% if @client.band? || @client.drums? || @client.has_producer? %>
+<% if @client.band?%> They are bringing their own band. No need to hire any musicians. <% end %>
+<% if @client.drums?%>They are bringing their own drums. They will use their own time to set up their kit. <% end %>
 <% if @client.has_producer?%> They have a producer they have hired. <% end %>
 <% end %>
 </div>
 
 <div class= "info-box" id="session-box">
-<p> This session is set to begin on <%= @recording_session.start_date%> and <%if @recording_session.start_date != @recording_session.end_date%> will conclude on <%= @recording_session.end_date %>.
 
+<p> This session is set to begin on <%= @recording_session.start_date %> and <% if @recording_session.start_date != @recording_session.end_date %> will conclude on <%= @recording_session.end_date %> <% end %>.
+</div>
 
