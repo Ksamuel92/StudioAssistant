@@ -47,7 +47,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/logout" do
-    log_out
+  session.delete(:user_id)
+      redirect to "/"
   end
 
 
@@ -61,18 +62,18 @@ helpers do
       !!session[:user_id]
     end
 
+    def log_out
+      session.delete(:user_id)
+      redirect to "/"
+    end
+  
+
     def can_edit?
       if  @current_user != RecordingSession.find(params[:id]).user
         redirect to "/recording_sessions"
         #error message?
       end
-    end
-
-
-    def log_out
-      session.delete(:user_id)
-      redirect to "/"
-    end
+  end
 end
 
 end
