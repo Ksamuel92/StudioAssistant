@@ -1,4 +1,7 @@
 <h2> Create A New Session </h2>
+<% if flash[:error] %>
+<h3><%= flash[:error] %> </h3>
+<% end %>
 <div class="form-group">
     <form method="POST" action="/recordingsessions">
     <div id="new-session">

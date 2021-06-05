@@ -30,7 +30,6 @@ class RecordingSessionsController < ApplicationController
     end
   end
 
-  # GET: /recording_sessions/5
   get "/recordingsessions/:slug/:id" do
     validate_login
     current_user
@@ -38,7 +37,7 @@ class RecordingSessionsController < ApplicationController
     erb :"/recording_sessions/show.html"
   end
 
-  # GET: /recording_sessions/5/edit
+
   get "/recordingsessions/:slug/:id/edit" do
     can_edit? 
     validate_login
@@ -47,7 +46,6 @@ class RecordingSessionsController < ApplicationController
     erb :"/recording_sessions/edit.html"
   end
 
-  # PATCH: /recording_sessions/5
   patch "/recordingsessions/:slug/:id" do
     can_edit? 
     set_recording_session_and_client
@@ -66,29 +64,6 @@ class RecordingSessionsController < ApplicationController
     @client.destroy
     redirect "/recordingsessions"
   end
-
-  private
-
-  def can_edit?
-    if current_user != RecordingSession.find(params[:id]).user
-      flash[:error] = "You are not authorized to edit this session!"
-      redirect to "/recording_sessions"
-    end
-
-  def validate_login
-    if !is_logged_in?
-      redirect to '/login'
-    end
-  end
-
-  def set_recording_session_and_client
-    @recording_session = RecordingSession.find_by_id(params[:id])
-    @client = Client.find_by_slug(params[:slug])
-    if !@recording_session || !@client
-      redirect to "/"
-      #error message
-    end
-  end
-
+  
 end
-
+end
