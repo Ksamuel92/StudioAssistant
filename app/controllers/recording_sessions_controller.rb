@@ -29,15 +29,15 @@ class RecordingSessionsController < ApplicationController
   post "/recordingsessions" do
     remove_comma_from_integer(params[:client][:budget])
     current_user
-    client = Client.new(params[:client])
-    recording_session = RecordingSession.new(params[:recording_session])
+    @client = Client.new(params[:client])
+    @recording_session = RecordingSession.new(params[:recording_session])
     
-    if !client.save || !recording_session.save
+    if !@client.save || !@recording_session.save
       redirect to "/recordingsessions/new"
       #error message
     else
-      user.recording_sessions << recording_session
-      client.recording_sessions << recording_session
+      @user.recording_sessions << @recording_session
+      @client.recording_sessions << @recording_session
       # user.clients << client
       redirect  "/recordingsessions"
     end

@@ -7,9 +7,9 @@
 
 
 <% if @client.band? || @client.drums? || @client.has_producer? %>
-<% if @client.band?%> They are bringing their own band. No need to hire any musicians. <% end %>
-<% if @client.drums?%>They are bringing their own drums. They will use their own time to set up their kit. <% end %>
-<% if @client.has_producer?%> They have a producer they have hired. <% end %>
+<% if @client.band?%> They are bringing their own band. No need to hire any musicians. </br> <% end %>
+<% if @client.drums?%>They are bringing their own drums. They will use their own time to set up their kit. </br> <% end %>
+<% if @client.has_producer?%> They have a producer they have hired. </br> <% end %>
 <% end %>
 </div>
 
@@ -26,7 +26,12 @@ It will finish on <%= @recording_session.end_date %>!
  That adds up to $<%= (@recording_session.per_hour * @recording_session.hours_per_day) %> per day!</p>
 
  <p> Considering their budget, that adds up to about <%= ((@client.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
+
+<% if @client.additional_comments%>
+<p> <strong>Additional Comments:</strong> <%= @client.additional_comments%> </p>
+<% end %>
 </div>
+
 
 <div class = "link-box" id = "edit-delete-box">
   <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> <input type = "button" value = "Edit Your Session"></a>
