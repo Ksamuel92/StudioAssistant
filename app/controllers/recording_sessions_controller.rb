@@ -31,6 +31,7 @@ class RecordingSessionsController < ApplicationController
   end
 
   get "/recordingsessions/:slug/:id" do
+    can_view?
     validate_login
     current_user
     set_recording_session_and_client
@@ -39,7 +40,7 @@ class RecordingSessionsController < ApplicationController
 
 
   get "/recordingsessions/:slug/:id/edit" do
-    can_edit? 
+    can_edit?
     validate_login
     current_user
     set_recording_session_and_client

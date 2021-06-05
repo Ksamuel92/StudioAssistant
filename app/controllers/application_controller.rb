@@ -24,9 +24,16 @@ class ApplicationController < Sinatra::Base
 
 helpers do
   def can_edit?
-    if current_user != RecordingSession.find(params[:id]).user
-      flash[:error] = "You are not authorized to edit this session!"
-      redirect to "/recording_sessions"
+    if current_user.name != RecordingSession.find_by_id(params[:id]).user.name
+      flash[:error] = "You are not authorized to edit this session! Play nice."
+      redirect to "/recordingsessions"
+    end
+  end
+
+  def can_view?
+    if current_user.name != RecordingSession.find_by_id(params[:id]).user.name
+      flash[:error] = "You are not authorized to view that session!"
+      redirect to "/recordingsessions"
     end
   end
 
