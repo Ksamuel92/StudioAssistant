@@ -64,15 +64,20 @@ class RecordingSessionsController < ApplicationController
   end
 
   # GET: /recording_sessions/5/edit
-  get "/recordingsessions/:slug/edit" do
-    #edit sesssion and client details. this should only be accessible to the user who owns that session
+  get "/recordingsessions/:slug/:id/edit" do
+    if !is_logged_in?
+      redirect to '/login'
+    end
+    @user = current_user
+    @recording_session = RecordingSession.find_by_id(params[:id])
+    @client = Client.find_by_slug(params[:slug])
     erb :"/recording_sessions/edit.html"
   end
 
   # PATCH: /recording_sessions/5
-  patch "/recordingsessions/:slug" do
+  patch "/recordingsessions/:slug/:id" do
 
-    redirect "/recordingsessions/:id"
+    redirect "/recordingsessions/:sllug/:id"
   end
 
   # DELETE: /recording_sessions/5/delete
