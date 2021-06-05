@@ -18,6 +18,8 @@ class RecordingSessionsController < ApplicationController
     erb :"/recording_sessions/index.html"
   end
 
+
+
   # GET: /recording_sessions/new
   get "/recordingsessions/new" do
     #grabs form to create a new recording session
@@ -53,18 +55,20 @@ class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions/5
   get "/recordingsessions/:slug/:id" do
+    # binding.pry
     #what should slug be for recording session? Maybe two slugs, first one client, second one :id/date?
     #Grabs session and shows user details of session (this includes dynamic details based on client information)
     #user should be able to edit session or client information (at this point, user creates both so should be able to edit both)
     @user = current_user
     # binding.pry
     @recording_session = RecordingSession.find_by_id(params[:id])
-    @client = @recording_session.client
+    @client = Client.find_by_slug(params[:slug])
     erb :"/recording_sessions/show.html"
   end
 
   # GET: /recording_sessions/5/edit
   get "/recordingsessions/:slug/:id/edit" do
+    
     if !is_logged_in?
       redirect to '/login'
     end
@@ -76,12 +80,30 @@ class RecordingSessionsController < ApplicationController
 
   # PATCH: /recording_sessions/5
   patch "/recordingsessions/:slug/:id" do
+    # binding.pry
+    recording_session = RecordingSession.find_by_id(params[:id])
+    client = Client.find_by_slug(params[:slug])
 
-    redirect "/recordingsessions/:sllug/:id"
+    recording_session.update(params[:recording_session])
+    client.update(params[:client])
+    # @song.artist = Artist.find_or_create_by(name: params[:artist][:name])
+    # @song.genre_ids = params[:genres]
+    recording_session.save
+    client.save
+    redirect "/recordingsessions/#{client.slug}/#{recording_session.id}"
   end
 
-  # DELETE: /recording_sessions/5/delete
-  delete "/recordingsessions/:id/delete" do
+
+  delete "/recordingsessions/:slug/:id/delete" do
+    # binding.pry
+    recording_session = RecordingSession.find_by_id(params[:id])
+    client = Client.find_by_slug(params[:slug])
+
+    recording_session.destroy
+    client.destroy
     redirect "/recordingsessions"
   end
+
+
 end
+

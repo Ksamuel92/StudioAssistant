@@ -29,3 +29,11 @@ It will finish on <%= @recording_session.end_date %>!
  <p> Considering their budget, that adds up to about <%= ((@client.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
 </div>
 
+<div class = "link-box" id = "edit-delete-box">
+<ul>
+  
+  <form method="post" action="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/delete">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value = "Delete Your Session">
+  </form>
+</ul>

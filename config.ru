@@ -5,7 +5,8 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 use Rack::MethodOverride
 run ApplicationController
+use RecordingSessionsController
 use SessionController
 use ClientsController
-use RecordingSessionsController
+# use RecordingSessionsController
 use UsersController
