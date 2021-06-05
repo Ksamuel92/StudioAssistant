@@ -30,10 +30,8 @@ It will finish on <%= @recording_session.end_date %>!
 </div>
 
 <div class = "link-box" id = "edit-delete-box">
-<ul>
-  
+  <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> <input type = "button" value = "Edit Your Session"></a>
   <form method="post" action="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/delete">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value = "Delete Your Session">
   </form>
-</ul>

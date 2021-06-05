@@ -68,8 +68,7 @@ class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions/5/edit
   get "/recordingsessions/:slug/:id/edit" do
-    
-    if !is_logged_in?
+  if !is_logged_in?
       redirect to '/login'
     end
     @user = current_user
