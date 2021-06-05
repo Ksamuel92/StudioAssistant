@@ -4,14 +4,21 @@
     <div class="sessionbox">
         <ul>
             <%@recording_sessions.all.each do |session|%>
-                <li><a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"> View Your Session with <%=session.client.name%> </li> 
+                <li><a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"> View Your Session with <%=session.client.name%> on <%= session.start_date %> </br>
+                <a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/edit"><input type ="button" value = "Edit This Session" ></a>
+                <form method="post" action="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/delete">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value = "Delete This Session"> </li>
+  </form>
+                 
             <% end %>
         </ul>
     </div>
 <% else %>
     <h3> Looks like you don't have any sessions yet!</h3>
 <% end %>
-
+</br>
+</br>
 <div class="linkbox">
     <ul>
         <li><a href="/recordingsessions/new"><input type="button" value = "New Session"></a></li>
