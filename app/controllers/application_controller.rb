@@ -7,16 +7,21 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "secret_sauce"
+    set :session_secret, "secret_sauce" 
+    # set :show_expectations, false uncomment out when finished
   end
 
   get "/" do
     erb :index
   end
 
+  error ActiveRecord::NotFound do
+
+  end
+
   not_found do
     status 404
-    erb :error
+    erb :"404"
   end
 
 
