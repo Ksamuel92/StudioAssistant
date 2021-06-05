@@ -20,7 +20,7 @@ class RecordingSessionsController < ApplicationController
     @recording_session = RecordingSession.new(params[:recording_session])
     
     if !@client.save || !@recording_session.save
-      flash[:error] = ""
+      flash[:error] = "Make sure you filled in the required fields!"
       redirect to "/recordingsessions/new"
 
     else
