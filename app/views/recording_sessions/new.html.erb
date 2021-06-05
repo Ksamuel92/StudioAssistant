@@ -1,7 +1,4 @@
 <h2> Create A New Session </h2>
-<% if flash[:error] %>
-<h3><%= flash[:error] %> </h3>
-<% end %>
 <div class="form-group">
     <form method="POST" action="/recordingsessions">
     <div id="new-session">
@@ -49,9 +46,11 @@
         </ul>
     <h5><label for="client_comments"> Additional Comments Regarding Client </h5>
     <textarea id="client_comments" name="client[additional_comments]" rows="4" cols="50">
-    
-</textarea>
+    </textarea>
     </div>
     <input type="Submit" value= "Create Session">
     </form>
-<%  #see about jquery/javascript for default values for unchecked boxes %>
+
+    <% if flash[:error] %>
+<h3><%= flash[:error] %> </h3>
+<% end %>
