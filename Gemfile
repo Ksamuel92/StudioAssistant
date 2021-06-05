@@ -11,9 +11,10 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
-gem "sinatra-param", require: "sinatra/param"
+# gem "sinatra-param", require: "sinatra/param"
 gem 'tux'
 gem 'money'
+gem 'sinatra-flash'
 
 group :test do
   gem 'rspec'

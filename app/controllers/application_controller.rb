@@ -1,13 +1,15 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-  helpers Sinatra::Param
+  # helpers Sinatra::Param
+  # require Sinatra::Flas.
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret_sauce" 
+    register Sinatra::Flash
     # set :show_expectations, false 
   end
 
@@ -19,10 +21,6 @@ class ApplicationController < Sinatra::Base
     status 404
     erb :"404"
   end
-
-  # error ActiveRecord::RecordNotFound do
-  #   erb :"error"
-  # end
 
 
 
@@ -46,14 +44,5 @@ helpers do
       integer.gsub!(/[,]/,"")
     end
 
-    
-
-    def can_edit?
-      if  @current_user != RecordingSession.find(params[:id]).user
-        redirect to "/recording_sessions"
-        #error message?
-      end
   end
-end
-
 end

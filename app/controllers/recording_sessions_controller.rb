@@ -1,31 +1,18 @@
 class RecordingSessionsController < ApplicationController
 
-  # GET: /recording_sessions
+ 
   get "/recordingsessions" do
     validate_login
     current_user
     @recording_sessions = current_user.recording_sessions
-    # binding.pry
-    # @user_recording_sessions = recording_sessions
-
-    
-    #perhaps can organize by client or by date?
-    #Brings up a list of all recording_sessions that belong to the current user
-    #if no recording sessions exist that belong to the current user, let them know they have none and offer to take them to new
-    #if there are recording sessions, have a brief overview of the session and a link to the session show page.html
     erb :"/recording_sessions/index.html"
   end
 
-
-
-  # GET: /recording_sessions/new
   get "/recordingsessions/new" do
     validate_login
-    #grabs form to create a new recording session
     erb :"/recording_sessions/new.html"
   end
 
-  # POST: /recording_sessions
   post "/recordingsessions" do
     remove_comma_from_integer(params[:client][:budget])
     current_user
@@ -33,17 +20,14 @@ class RecordingSessionsController < ApplicationController
     @recording_session = RecordingSession.new(params[:recording_session])
     
     if !@client.save || !@recording_session.save
+      flash[:error] = ""
       redirect to "/recordingsessions/new"
-      #error message
+
     else
-      @user.recording_sessions << @recording_session
+      current_user.recording_sessions << @recording_session
       @client.recording_sessions << @recording_session
-      # user.clients << client
       redirect  "/recordingsessions"
     end
-    #grabs params from recordingsessions/new and make new recordingsessions and clients, associating them both
-    #make sure validations pass
-    # redirect  "/recordingsessions"
   end
 
   # GET: /recording_sessions/5
@@ -56,6 +40,7 @@ class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions/5/edit
   get "/recordingsessions/:slug/:id/edit" do
+    can_edit? 
     validate_login
     current_user
     set_recording_session_and_client
@@ -64,7 +49,7 @@ class RecordingSessionsController < ApplicationController
 
   # PATCH: /recording_sessions/5
   patch "/recordingsessions/:slug/:id" do
-    # binding.pry
+    can_edit? 
     set_recording_session_and_client
     @recording_session.update(params[:recording_session])
     @client.update(params[:client])
@@ -75,6 +60,7 @@ class RecordingSessionsController < ApplicationController
 
 
   delete "/recordingsessions/:slug/:id/delete" do
+    can_edit? 
     set_recording_session_and_client
     @recording_session.destroy
     @client.destroy
@@ -82,6 +68,12 @@ class RecordingSessionsController < ApplicationController
   end
 
   private
+
+  def can_edit?
+    if current_user != RecordingSession.find(params[:id]).user
+      flash[:error] = "You are not authorized to edit this session!"
+      redirect to "/recording_sessions"
+    end
 
   def validate_login
     if !is_logged_in?
