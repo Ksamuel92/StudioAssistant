@@ -5,7 +5,7 @@ class RecordingSessionsController < ApplicationController
     if !is_logged_in?
       redirect to '/login'
     end
-    @user = current_user
+    current_user
     @recording_sessions = current_user.recording_sessions
     # binding.pry
     # @user_recording_sessions = recording_sessions
@@ -34,7 +34,7 @@ class RecordingSessionsController < ApplicationController
     #error message
   #  end
     remove_comma_from_integer(params[:client][:budget])
-    user = current_user
+    current_user
     client = Client.new(params[:client])
     recording_session = RecordingSession.new(params[:recording_session])
     
@@ -55,14 +55,9 @@ class RecordingSessionsController < ApplicationController
 
   # GET: /recording_sessions/5
   get "/recordingsessions/:slug/:id" do
-    # binding.pry
-    #what should slug be for recording session? Maybe two slugs, first one client, second one :id/date?
-    #Grabs session and shows user details of session (this includes dynamic details based on client information)
-    #user should be able to edit session or client information (at this point, user creates both so should be able to edit both)
-    @user = current_user
-    # binding.pry
-    @recording_session = RecordingSession.find_by_id(params[:id])
-    @client = Client.find_by_slug(params[:slug])
+   
+  current_user
+  find_session_and_client
     erb :"/recording_sessions/show.html"
   end
 
@@ -103,6 +98,16 @@ class RecordingSessionsController < ApplicationController
     redirect "/recordingsessions"
   end
 
+  private
+
+  def set_recording_session_and_client
+    @recording_session = RecordingSession.find_by_id(params[:id])
+    @client = Client.find_by_slug(params[:slug])
+    if !@recording_session || !@client
+      redirect to "/"
+      #error message
+    end
+  end
 
 end
 

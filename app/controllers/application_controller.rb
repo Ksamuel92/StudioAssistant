@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret_sauce" 
-    set :show_expectations, false 
+    # set :show_expectations, false 
   end
 
   get "/" do
@@ -20,9 +20,9 @@ class ApplicationController < Sinatra::Base
     erb :"404"
   end
 
-  error ActiveRecord::RecordNotFound do
-    erb :"error"
-  end
+  # error ActiveRecord::RecordNotFound do
+  #   erb :"error"
+  # end
 
 
 
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
 helpers do
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @user ||= User.find_by(id: session[:user_id])
     end
 
     def is_logged_in?
