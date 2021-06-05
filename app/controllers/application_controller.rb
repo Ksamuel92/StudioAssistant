@@ -22,15 +22,13 @@ class ApplicationController < Sinatra::Base
     erb :"404"
   end
 
-
-
-
 helpers do
   def can_edit?
     if current_user != RecordingSession.find(params[:id]).user
       flash[:error] = "You are not authorized to edit this session!"
       redirect to "/recording_sessions"
     end
+  end
 
   def current_user
     @user ||= User.find_by(id: session[:user_id])
@@ -53,14 +51,11 @@ helpers do
         redirect to "/"
         #error message
       end
+    end
 
 
     def validate_login
       !!session[:user_id]
     end
-
-  
-    
-
   end
 end
