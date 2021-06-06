@@ -17,10 +17,12 @@
     <div class="wrapper">
 <nav>
 <ul>
-  <li><a href="default.asp">Home</a></li>
-  <li><a href="news.asp">News</a></li>
-  <li><a href="contact.asp">Contact</a></li>
-  <li><a href="about.asp">About</a></li>
+  <% if validate_login && current_user %>
+  <li><a href="/recordingsessions">My Sessions</a></li>
+  <% end %>
+  <% if !validate_login %> <li><a href= "/signup"> Sign Up</a></li> <% end %>
+  <% if !validate_login %> <li><a href= "/login"> Log In</a></li> <% end %>
+  <% if validate_login %> <li><a href= "/logout"> Log Out</a></li> <% end %>
 </ul>
 </nav>
 
