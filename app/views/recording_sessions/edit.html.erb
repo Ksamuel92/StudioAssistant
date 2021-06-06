@@ -24,25 +24,18 @@
     </div>
     </br>
     <h4>More Client Options </h4>
-    <%# <h6>Check any that apply</h6> %>
     <div id="client-options">
         <ul>
             <li><label for= "client_producer"> Is the client bringing their own producer(s)?</label></li>
-            <%# <li><input type="checkbox" id="client_yes" name="client[has_producer?]" value="true"></li> %>
             <li>Yes: <input type="radio" name="client[has_producer?]" value="true" <%='checked' if @client.has_producer? == true %>>
             No: <input type="radio" name="client[has_producer?]" value="false" <%='checked' if @client.has_producer? == false %>></li>
-            <%# <li>No<input type="radio" name="client[has_producer?]" value="false"></li> %>
-            <%# <li><input type="hidden" id="client_no" name="client[has_producer?]" value="false"></li> %>
             <li><label for= "client_band"> Is the client bringing their own band?</label></li>
             <li>Yes: <input type="radio" name="client[band?]" value="true" <%='checked' if @client.band? == true %>>
             No: <input type="radio" name="client[band?]" value="false"<%='checked' if @client.band? == false %>></li>
-            <%# <li><input type="checkbox" id="client_yes" name="client[band?]" value="true"></li> %>
-            <%# <li><input type="hidden" id="client_no" name="client[band?]" value="false"></li> %>
+        
             <li><label for= "client_producer"> Is the client bringing their own drums?</label></li>
              <li>Yes: <input type="radio" name="client[drums?]" value="true"<%='checked' if @client.drums? == true %>>
             No: <input type="radio" name="client[drums?]" value="false"<%='checked' if @client.drums? == false %>></li>
-            <%# <li><input type="checkbox" id="client_yes" name="client[drums?]" value="true"></li> %>
-            <%# <li><input type="hidden" id="client_no" name="client[drums?]" value="false"></li> %>
         </ul>
     <h5><label for="client_comments"> Additional Comments Regarding Client </h5>
     <textarea id="client_comments" name="client[additional_comments]" rows="4" cols="50" value = <%= @client.additional_comments %>>
