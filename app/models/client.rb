@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   has_many :recording_sessions
   has_many :users, through: :recording_sessions
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :email, presence: true#downcase emails
 
 

@@ -10,6 +10,8 @@ class RecordingSessionsController < ApplicationController
 
   get "/recordingsessions/new" do
     validate_login
+    current_user
+    @clients = current_user.clients
     erb :"/recording_sessions/new.html"
   end
 
@@ -31,6 +33,7 @@ class RecordingSessionsController < ApplicationController
   end
 
   get "/recordingsessions/:slug/:id" do
+    current_user
     can_view?
     validate_login
     current_user
@@ -40,6 +43,7 @@ class RecordingSessionsController < ApplicationController
 
 
   get "/recordingsessions/:slug/:id/edit" do
+    current_user
     can_edit?
     validate_login
     current_user
@@ -48,6 +52,7 @@ class RecordingSessionsController < ApplicationController
   end
 
   patch "/recordingsessions/:slug/:id" do
+    current_user
     can_edit? 
     set_recording_session_and_client
     @recording_session.update(params[:recording_session])
@@ -59,12 +64,11 @@ class RecordingSessionsController < ApplicationController
 
 
   delete "/recordingsessions/:slug/:id/delete" do
+    current_user
     can_edit? 
     set_recording_session_and_client
-    @recording_session.destroy
-    @client.destroy
+    @recording_session.delete
     redirect "/recordingsessions"
   end
   
 end
-
