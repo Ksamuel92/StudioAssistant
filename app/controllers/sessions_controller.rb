@@ -1,6 +1,5 @@
 class SessionController < ApplicationController
-    
-    get "/signup" do
+get '/signup' do
 
     erb :"registration/signup"
     end
@@ -8,8 +7,8 @@ class SessionController < ApplicationController
       post "/signup" do
         user = User.new(:name => params[:name], :email => params[:email], :location => params[:location], :password => params[:password])
         if !user.save
+          flash[:error] = "Make sure to fill the required fields and that your email address hasn't been used already."
           redirect to "/signup"
-          #flash error message??
         else
           user.save
           session[:user_id] = user.id
