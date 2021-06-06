@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, ENV.fetch('session_secret')
     register Sinatra::Flash
-    # set :show_expectations, false 
+    # set :show_expectations, false
   end
 
   get "/" do
@@ -24,14 +24,16 @@ class ApplicationController < Sinatra::Base
 helpers do
 
   def can_edit?
-    if current_user.name != RecordingSession.find_by_id(params[:id]).user.name
+    current_user
+    if @user != RecordingSession.find(params[:id]).user #check to make sure i can switch this back to current_user
       flash[:error] = "You are not authorized to edit this session! Play nice."
       redirect to "/recordingsessions"
     end
   end
 
   def can_view?
-    if current_user.name != RecordingSession.find_by_id(params[:id]).user.name
+    current_user
+    if @user != RecordingSession.find_by_id(params[:id]).user #check to make sure i can switch this back to current_user
       flash[:error] = "You are not authorized to view that session!"
       redirect to "/recordingsessions"
     end
