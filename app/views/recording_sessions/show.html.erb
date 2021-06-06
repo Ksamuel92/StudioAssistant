@@ -14,18 +14,25 @@
 </div>
 
 <div class= "info-box" id="session-box">
-
 <p> This session is set to begin on <%= @recording_session.start_date %>!
+
+
 <% if @recording_session.end_date == "" %> 
 No end date yet, so it will go until it's finished! 
 <% else %> 
 It will finish on <%= @recording_session.end_date %>!
 <% end %> </p>
 
+
+<% if @recording_session.per_hour && @recording_session.hours_per_day && @client.budget%>
 <p> You are charging the client $<%= @recording_session.per_hour %> and working <%= @recording_session.hours_per_day%> hours per day.
  That adds up to $<%= (@recording_session.per_hour * @recording_session.hours_per_day) %> per day!</p>
+<p> Considering their budget, that adds up to about <%= ((@client.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
+<% end %>
 
- <p> Considering their budget, that adds up to about <%= ((@client.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
+<% if !@recording_session.per_hour || !@recording_session.hours_per_day %>
+<p> If you are charging the client hourly, make sure to add that information <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a> <p>
+<% end %>
 
 <% if @client.additional_comments%>
 <p> <strong>Additional Comments:</strong> <%= @client.additional_comments%> </p>
