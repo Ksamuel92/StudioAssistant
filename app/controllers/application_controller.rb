@@ -22,6 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
 helpers do
+
   def can_edit?
     if current_user.name != RecordingSession.find_by_id(params[:id]).user.name
       flash[:error] = "You are not authorized to edit this session! Play nice."
@@ -37,7 +38,7 @@ helpers do
   end
 
   def current_user
-    @user ||= User.find_by(id: session[:user_id])
+    @user ||= User.find_by(id: session[:user_id]) if validate_login
     end
 
   
