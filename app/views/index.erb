@@ -1,4 +1,7 @@
 <h2>StudioAssistant</h2>
 <h4>Your Recording Session And Client Resource</h4>
 </br>
+<% if validate_login && current_user.name %>
+<p> Welcome back <%= current_user %>!</p>
+<% end %>
 <p> Use StudioAssistant as your personal, uh, studio assistant. Create new sessions, along with client info, and let StudioAssistant generate a quick overview of your schedule so you're never unprepared.</p>
