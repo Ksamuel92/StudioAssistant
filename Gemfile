@@ -14,6 +14,7 @@ gem 'bcrypt'
 gem 'sysrandom'
 gem 'figaro', :git => 'https://github.com/bpaquet/figaro.git', :branch => 'sinatra'
 # gem "sinatra-param", require: "sinatra/param"
+gem 'erubi'
 gem 'tux'
 gem 'money'
 gem 'sinatra-flash'

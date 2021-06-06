@@ -48,6 +48,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     diff-lcs (1.4.4)
+    erubi (1.10.0)
     eventmachine (1.2.7)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
@@ -138,6 +139,7 @@ DEPENDENCIES
   bcrypt
   capybara
   database_cleaner!
+  erubi
   faker
   figaro!
   money
