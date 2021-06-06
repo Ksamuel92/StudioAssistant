@@ -11,6 +11,8 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
+gem 'sysrandom'
+gem 'figaro', :git => 'https://github.com/bpaquet/figaro.git', :branch => 'sinatra'
 # gem "sinatra-param", require: "sinatra/param"
 gem 'tux'
 gem 'money'

@@ -1,14 +1,13 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-  # helpers Sinatra::Param
-  # require Sinatra::Flas.
+
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "secret_sauce" 
+    set :session_secret, ENV.fetch('session_secret')
     register Sinatra::Flash
     # set :show_expectations, false 
   end
@@ -55,8 +54,8 @@ helpers do
       @recording_session = RecordingSession.find_by_id(params[:id])
       @client = Client.find_by_slug(params[:slug])
       if !@recording_session || !@client
-        redirect to "/"
-        #error message
+        flash[:error] = "Something went wrong! Check your URL and try again."
+        redirect to "/recordingsessions"
       end
     end
 
