@@ -16,10 +16,10 @@ class RecordingSessionsController < ApplicationController
   end
 
   post "/recordingsessions" do
-    remove_comma_from_integer(params[:client][:budget])
+    remove_comma_from_integer(params[:recording_session][:budget])
     # binding.pry
     current_user
-    if params[:returning_client][:name]
+    if params.key?(:returning_client)
       @client = Client.find_by_name(params[:returning_client][:name])
     else
     @client = Client.new(params[:client])

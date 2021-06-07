@@ -7,7 +7,7 @@
             <li><label for= "client_name">*Client Name:</label></li>
             <li><input type="text" name="client[name]" id="client_name"></li></br>
             
-            <% if @clients != [] %>
+            <% if @clients != nil %>
             <li> Or choose from a list of returning clients.</li>
             <select name="returning_client[name]" id="client_name">
             <option value = nil></option>
