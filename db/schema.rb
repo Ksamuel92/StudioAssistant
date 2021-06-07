@@ -14,15 +14,9 @@ ActiveRecord::Schema.define(version: 2021_06_03_135013) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
-    t.boolean "band?"
-    t.string "genre"
-    t.boolean "has_producer?"
-    t.integer "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
-    t.text "additional_comments"
-    t.boolean "drums?"
   end
 
   create_table "recording_sessions", force: :cascade do |t|
@@ -33,8 +27,14 @@ ActiveRecord::Schema.define(version: 2021_06_03_135013) do
     t.text "specialized_gear"
     t.integer "user_id"
     t.integer "client_id"
+    t.boolean "band?"
+    t.boolean "has_producer?"
+    t.string "genre"
+    t.integer "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "additional_comments"
+    t.boolean "drums?"
   end
 
   create_table "users", force: :cascade do |t|

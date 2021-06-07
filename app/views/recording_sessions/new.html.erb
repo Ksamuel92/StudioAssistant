@@ -10,7 +10,7 @@
             <% if @clients != [] %>
             <li> Or choose from a list of returning clients.</li>
             <select name="returning_client[name]" id="client_name">
-            <option value = ""></option>
+            <option value = nil></option>
             <% @clients.each do |client|%>
             <option value="<%= client.name %>"><%= client.name %></option>
             <% end %>

@@ -8,6 +8,10 @@ class CreateRecordingSessions < ActiveRecord::Migration[5.2]
       t.text :specialized_gear
       t.integer :user_id
       t.integer :client_id
+      t.boolean :band?
+      t.boolean :has_producer?
+      t.string :genre
+      t.integer :budget
 
       t.timestamps null: false
     end
