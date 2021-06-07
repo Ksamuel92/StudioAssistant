@@ -27,6 +27,7 @@ get '/signup' do
         session[:user_id] = user.id
         redirect to "/recordingsessions"
         else
+          flash[:error] = "Doublecheck your username and password."
           redirect to "/login"
           #error message?
         end

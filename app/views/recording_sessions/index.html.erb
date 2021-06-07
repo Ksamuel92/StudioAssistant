@@ -27,7 +27,7 @@
         <li><a href="/recordingsessions/new"><input type="button" value = "New Session"></a></li>
         
             <% if @clients != [] %>
-            <li> Or create a session with a returning client </li>
+            <li> Or book a new session with a current client. </li>
             <%@clients.each do |client|%>
             <a href= "/recordingsessions/<%= client.slug %>/new"><%= client.name%> - <%= client.email%></a>
             <% end %>

@@ -42,7 +42,6 @@ end
     else
       current_user.recording_sessions << @recording_session
       @client.recording_sessions << @recording_session
-      current_user.clients << @client
       redirect  "/recordingsessions"
     end
   end

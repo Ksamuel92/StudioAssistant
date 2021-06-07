@@ -1,5 +1,8 @@
 <h2> Log In </h2>
 <div class="form-group">
+<%if flash[:error]%>
+    <h6> <%= flash[:error]%> </h6>
+    <% end %>
     <form method="POST" action="/login">
         <label for = "email">Email:</label>
         <input type="text" name="email" id="email"></br>
