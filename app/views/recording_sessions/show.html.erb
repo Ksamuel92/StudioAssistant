@@ -16,8 +16,8 @@
 <p> This session is set to begin on <%= @recording_session.start_date %>!
 
 
-<% if @recording_session.end_date == "" %> 
-No end date yet, so it will go until it's finished! 
+<% if @recording_session.end_date == "" || @recording_session.end_date == @recording_session.start_date %> 
+No end date is set, so it will go until it's finished! If you believe this is a mistake, go ahead and change that <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a>
 <% else %> 
 It will finish on <%= @recording_session.end_date %>!
 <% end %> </p>

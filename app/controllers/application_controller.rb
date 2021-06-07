@@ -63,5 +63,9 @@ helpers do
     def validate_login
       !!session[:user_id]
     end
+
+    def validate_dates
+      params[:recording_session][:end_date] < params[:recording_session][:start_date]
+    end
   end
 end

@@ -32,6 +32,7 @@ class RecordingSessionsController < ApplicationController
     remove_comma_from_integer(params[:recording_session][:budget])
     @client = Client.find_or_create_by(params[:client])
     @recording_session = RecordingSession.new(params[:recording_session])
+    validate_dates
     if !@client.save || !@recording_session.save
       flash[:error] = 'Make sure you filled in the required fields!'
       redirect to '/recordingsessions/new'
@@ -65,6 +66,10 @@ class RecordingSessionsController < ApplicationController
     current_user
     can_edit?
     set_recording_session_and_client
+    if validate_dates
+      flash[:error] = "Your end date is before your start date!"
+      redirect "/recordingsessions/#{@client.slug}/#{@recording_session.id}"
+    end
     @recording_session.update(params[:recording_session])
     @client.update(params[:client])
     @recording_session.save

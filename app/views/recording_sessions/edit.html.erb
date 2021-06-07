@@ -11,15 +11,15 @@
             <li><label for= "recording_session_genre">Genre:</label></li>
             <li><input type="text" name="recording_session[genre]" id="recording_session_genre" value = "<%= @recording_session.genre %>"></li></br>
             <li><label for= "recording_session_budget">Budget:</label></li>
-            <li><input type="text" name="recording_session[budget]" id="recording_session_budget" value = "<%= @recording_session.budget %>"></li></br>
+            <li><input type="number" step="1" name="recording_session[budget]" id="recording_session_budget" value = "<%= @recording_session.budget %>"></li></br>
             <li><label for = "start_date">*Start Date: </label></li>
-            <li><input type="date" name="recording_session[start_date]" id="start_date" value = "<%= @recording_session.start_date %>"></li></br>
+            <li><input type="date" name="recording_session[start_date]" id="start_date" min= <%= Date.today%> value = "<%= @recording_session.start_date %>"></li></br>
             <li><label for = "end_date">End Date:</label></li>
-            <li><input type="date" name="recording_session[end_date]" id="end_date" value = "<%= @recording_session.start_date %>"></li></br>
+            <li><input type="date" name="recording_session[end_date]" id="end_date" min= <%= Date.today%> value = "<%= @recording_session.start_date %>"></li></br>
             <li><label for = "per_hour"> Rate Per Hour: $</label></li>
-            <li><input type="text" name="recording_session[per_hour]" id="per_hour" value = "<%= @recording_session.per_hour %>"></li></br>
+            <li><input ype="number" step= "1" name="recording_session[per_hour]" id="per_hour" value = "<%= @recording_session.per_hour %>"></li></br>
             <li><label for = "hours_per_day"> Hours Per Day:</label></li>
-            <li><input type="text" name="recording_session[hours_per_day]" id="hours_per_day" value = "<%= @recording_session.hours_per_day %>"></li></br>
+            <li><input ype="number" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day" value = "<%= @recording_session.hours_per_day %>"></li></br>
         </ul>
     </div>
     </br>
