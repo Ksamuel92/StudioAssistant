@@ -1,6 +1,5 @@
 class RecordingSessionsController < ApplicationController
-
- 
+  
   get "/recordingsessions" do
     validate_login
     current_user
@@ -9,44 +8,38 @@ class RecordingSessionsController < ApplicationController
     erb :"/recording_sessions/index.html"
   end
 
-  get "/recordingsessions/new" do
-    # binding.prye
+  get '/recordingsessions/new' do
     validate_login
     current_user
     @clients = current_user.clients.uniq
     erb :"/recording_sessions/new.html"
   end
 
-  get "/recordingsessions/:slug/new" do
-# binding.pry
+  get '/recordingsessions/:slug/new' do
   validate_login
   current_user
   @client = Client.find_by_slug(params[:slug])
   erb :"/recording_sessions/new.html"
-end
+  end
 
-
-  #h.values_at(:a, :c)
-
-  post "/recordingsessions" do
+  post '/recordingsessions' do
     validate_login
     current_user
     remove_comma_from_integer(params[:recording_session][:budget])
     @client = Client.find_or_create_by(params[:client])
     @recording_session = RecordingSession.new(params[:recording_session])
-    # binding.pry
     if !@client.save || !@recording_session.save
-      flash[:error] = "Make sure you filled in the required fields!"
-      redirect to "/recordingsessions/new"
+      flash[:error] = 'Make sure you filled in the required fields!'
+      redirect to '/recordingsessions/new'
 
     else
       current_user.recording_sessions << @recording_session
       @client.recording_sessions << @recording_session
-      redirect  "/recordingsessions"
+      redirect 'recordingsessions'
     end
   end
 
-  get "/recordingsessions/:slug/:id" do
+  get '/recordingsessions/:slug/:id' do
     current_user
     can_view?
     validate_login
@@ -55,19 +48,18 @@ end
     erb :"/recording_sessions/show.html"
   end
 
-
-  get "/recordingsessions/:slug/:id/edit" do
+  get '/recordingsessions/:slug/:id/edit' do
     current_user
     can_edit?
     validate_login
     current_user
     set_recording_session_and_client
-    erb :"/recording_sessions/edit.html"
+    erb :'/recording_sessions/edit.html'
   end
 
-  patch "/recordingsessions/:slug/:id" do
+  patch '/recordingsessions/:slug/:id' do
     current_user
-    can_edit? 
+    can_edit?
     set_recording_session_and_client
     @recording_session.update(params[:recording_session])
     @client.update(params[:client])
@@ -76,14 +68,11 @@ end
     redirect "/recordingsessions/#{@client.slug}/#{@recording_session.id}"
   end
 
-
-  delete "/recordingsessions/:slug/:id/delete" do
+  delete '/recordingsessions/:slug/:id/delete' do
     current_user
     can_edit? 
-    # set_recording_session_and_client
     @recording_session = RecordingSession.find_by_id(params[:id])
     @recording_session.delete
-    redirect "/recordingsessions"
+    redirect '/recordingsessions'
   end
-  
 end
