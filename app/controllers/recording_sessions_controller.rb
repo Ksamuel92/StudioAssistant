@@ -11,14 +11,19 @@ class RecordingSessionsController < ApplicationController
   get "/recordingsessions/new" do
     validate_login
     current_user
-    @clients = current_user.clients
+    @clients = current_user.clients.uniq
     erb :"/recording_sessions/new.html"
   end
 
   post "/recordingsessions" do
     remove_comma_from_integer(params[:client][:budget])
+    # binding.pry
     current_user
+    if params[:returning_client][:name]
+      @client = Client.find_by_name(params[:returning_client][:name])
+    else
     @client = Client.new(params[:client])
+    end
     @recording_session = RecordingSession.new(params[:recording_session])
     
     if !@client.save || !@recording_session.save
