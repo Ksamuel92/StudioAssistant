@@ -1,15 +1,15 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 <h2>Hi, <strong><%= @user.name %></strong>! Here's what to expect for your session on <%= @recording_session.start_date %></h2>
 <div class="info-box" id="client-box">
-<p> <%= @client.name %> is our client. They have a <%= @client.genre %> project.</p>
-<p> <%if @client.budget %> Our client's budget is $<%= @client.budget %>. If there's a problem with that, email them at <%= @client.email %>. 
+<p> <%= @client.name %> is our client. They have a <%= @recording_session.genre %> project.</p>
+<p> <%if @recording_session.budget %> Our client's budget is $<%= @recording_session.budget %>. If there's a problem with that, email them at <%= @client.email %>. 
 <% else %> You still need to contact your client at <%= @client.email %> to discuss budget. <% end %> </p>
 
 
-<% if @client.band? || @client.drums? || @client.has_producer? %>
-<% if @client.band?%> They are bringing their own band. No need to hire any musicians. </br> <% end %>
-<% if @client.drums?%>They are bringing their own drums. They will use their own time to set up their kit. </br> <% end %>
-<% if @client.has_producer?%> They have a producer they have hired. </br> <% end %>
+
+<% if @recording_session.band?%> They are bringing their own band. No need to hire any musicians. </br> <% end %>
+<% if @recording_session.drums?%>They are bringing their own drums. They will use their own time to set up their kit. </br> <% end %>
+<% if @recording_session.has_producer?%> They have a producer they have hired. </br> <% end %>
 <% end %>
 </div>
 
@@ -24,18 +24,18 @@ It will finish on <%= @recording_session.end_date %>!
 <% end %> </p>
 
 
-<% if @recording_session.per_hour && @recording_session.hours_per_day && @client.budget%>
+<% if @recording_session.per_hour && @recording_session.hours_per_day && @recording_session.budget%>
 <p> You are charging the client $<%= @recording_session.per_hour %> and working <%= @recording_session.hours_per_day%> hours per day.
  That adds up to $<%= (@recording_session.per_hour * @recording_session.hours_per_day) %> per day!</p>
-<p> Considering their budget, that adds up to about <%= ((@client.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
+<p> Considering their budget, that adds up to about <%= ((@recording_session.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
 <% end %>
 
 <% if !@recording_session.per_hour || !@recording_session.hours_per_day %>
 <p> If you are charging the client hourly, make sure to add that information <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a> <p>
 <% end %>
 
-<% if @client.additional_comments%>
-<p> <strong>Additional Comments:</strong> <%= @client.additional_comments%> </p>
+<% if @recording_session.additional_comments%>
+<p> <strong>Additional Comments:</strong> <%= @recording_session.additional_comments%> </p>
 <% end %>
 </div>
 

@@ -8,10 +8,10 @@
             <li><input type="text" name="client[name]" id="client_name" value = "<%= @client.name %>" ></li></br>
             <li><label for= "client_email">*Client Email:</label></li>
             <li><input type="text" name="client[email]" id="client_email" value = "<%= @client.email %>"></li></br>
-            <li><label for= "client_genre">Client Genre:</label></li>
-            <li><input type="text" name="client[genre]" id="client_genre" value = "<%= @client.genre %>"></li></br>
-            <li><label for= "client_budget">Client Budget:</label></li>
-            <li><input type="text" name="client[budget]" id="client_budget" value = "<%= @client.budget %>"></li></br>
+            <li><label for= "recording_session_genre">Genre:</label></li>
+            <li><input type="text" name="recording_session[genre]" id="recording_session_genre" value = "<%= @recording_session.genre %>"></li></br>
+            <li><label for= "recording_session_budget">Budget:</label></li>
+            <li><input type="text" name="recording_session[budget]" id="recording_session_budget" value = "<%= @recording_session.budget %>"></li></br>
             <li><label for = "start_date">*Start Date: </label></li>
             <li><input type="date" name="recording_session[start_date]" id="start_date" value = "<%= @recording_session.start_date %>"></li></br>
             <li><label for = "end_date">End Date:</label></li>
@@ -26,19 +26,18 @@
     <h4>More Client Options </h4>
     <div id="client-options">
         <ul>
-            <li><label for= "client_producer"> Is the client bringing their own producer(s)?</label></li>
-            <li>Yes: <input type="radio" name="client[has_producer?]" value="true" <%='checked' if @client.has_producer? == true %>>
-            No: <input type="radio" name="client[has_producer?]" value="false" <%='checked' if @client.has_producer? == false %>></li>
-            <li><label for= "client_band"> Is the client bringing their own band?</label></li>
-            <li>Yes: <input type="radio" name="client[band?]" value="true" <%='checked' if @client.band? == true %>>
-            No: <input type="radio" name="client[band?]" value="false"<%='checked' if @client.band? == false %>></li>
-        
-            <li><label for= "client_producer"> Is the client bringing their own drums?</label></li>
-             <li>Yes: <input type="radio" name="client[drums?]" value="true"<%='checked' if @client.drums? == true %>>
-            No: <input type="radio" name="client[drums?]" value="false"<%='checked' if @client.drums? == false %>></li>
+            <li><label for= "recording_session_producer"> Is the client bringing their own producer(s)?</label></li>
+            <li>Yes: <input type="radio" name="recording_session[has_producer?]" value="true" <%='checked' if @recording_session.has_producer? == true %>>
+            No: <input type="radio" name="recording_session[has_producer?]" value="false" <%='checked' if @recording_session.has_producer? == false %>></li>
+            <li><label for= "recording_session_band"> Is the client bringing their own band?</label></li>
+            <li>Yes: <input type="radio" name="recording_session[band?]" value="true" <%='checked' if @recording_session.band? == true %>>
+            No: <input type="radio" name="recording_session[band?]" value="false"<%='checked' if @recording_session.band? == false %>></li>
+            <li><label for= "recording_session_drums"> Is the client bringing their own drums?</label></li>
+            <li>Yes: <input type="radio" name="recording_session[drums?]" value="true"<%='checked' if @recording_session.drums? == true %>>
+            No: <input type="radio" name="recording_session[drums?]" value="false"<%='checked' if @recording_session.drums? == false %>></li>
         </ul>
-    <h5><label for="client_comments"> Additional Comments Regarding Client </h5>
-    <textarea id="client_comments" name="client[additional_comments]" rows="4" cols="50" value = <%= @client.additional_comments %>>
+    <h5><label for="recording_session_comments"> Additional Comments Regarding Client </h5>
+    <textarea id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50" value = <%= @recording_session.additional_comments %>>
     
 </textarea>
     </div>
