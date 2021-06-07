@@ -29,7 +29,6 @@ end
   #h.values_at(:a, :c)
 
   post "/recordingsessions" do
-    # binding.pry
     validate_login
     current_user
     remove_comma_from_integer(params[:recording_session][:budget])
@@ -43,6 +42,7 @@ end
     else
       current_user.recording_sessions << @recording_session
       @client.recording_sessions << @recording_session
+      current_user.clients << @client
       redirect  "/recordingsessions"
     end
   end
@@ -81,7 +81,8 @@ end
   delete "/recordingsessions/:slug/:id/delete" do
     current_user
     can_edit? 
-    set_recording_session_and_client
+    # set_recording_session_and_client
+    @recording_session = RecordingSession.find_by_id(params[:id])
     @recording_session.delete
     redirect "/recordingsessions"
   end

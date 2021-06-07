@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   has_many :recording_sessions
   has_many :users, through: :recording_sessions
-  has_many :clients_users
+#   has_many :returning_users, through: :clients_users, class_name: "User"
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
@@ -22,3 +22,6 @@ class Client < ActiveRecord::Base
 
 
 end
+
+
+# has_many :returning_clients, through: :clients_users, class_name: "Client"
