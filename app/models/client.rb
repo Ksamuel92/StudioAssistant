@@ -1,6 +1,7 @@
 class Client < ActiveRecord::Base
   has_many :recording_sessions
-  has_and_belongs_to_many :users
+  has_many :users, through: :recording_sessions
+  has_many :clients_users
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
@@ -13,9 +14,9 @@ class Client < ActiveRecord::Base
         self.name.downcase.gsub(" ","-")
     end
 
-    # def slug_to_name(slug)
-    # slug.gsub("-", " ").capitalize
-    # end
+    def slug_to_name(slug)
+        self.slug.gsub("-", " ").capitalize
+    end
   
 
 
