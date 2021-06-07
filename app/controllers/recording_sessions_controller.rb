@@ -4,28 +4,38 @@ class RecordingSessionsController < ApplicationController
   get "/recordingsessions" do
     validate_login
     current_user
-    @recording_sessions = current_user.recording_sessions
+    @recording_sessions = current_user.recording_sessions.order(:start_date)
+    @clients = current_user.clients.uniq
     erb :"/recording_sessions/index.html"
   end
 
   get "/recordingsessions/new" do
+    # binding.prye
     validate_login
     current_user
     @clients = current_user.clients.uniq
     erb :"/recording_sessions/new.html"
   end
 
+  get "/recordingsessions/:slug/new" do
+# binding.pry
+  validate_login
+  current_user
+  @client = Client.find_by_slug(params[:slug])
+  erb :"/recording_sessions/new.html"
+end
+
+
+  #h.values_at(:a, :c)
+
   post "/recordingsessions" do
-    remove_comma_from_integer(params[:recording_session][:budget])
     # binding.pry
+    validate_login
     current_user
-    if params.key?(:returning_client)
-      @client = Client.find_by_name(params[:returning_client][:name])
-    else
-    @client = Client.new(params[:client])
-    end
+    remove_comma_from_integer(params[:recording_session][:budget])
+    @client = Client.find_or_create_by(params[:client])
     @recording_session = RecordingSession.new(params[:recording_session])
-    
+    # binding.pry
     if !@client.save || !@recording_session.save
       flash[:error] = "Make sure you filled in the required fields!"
       redirect to "/recordingsessions/new"

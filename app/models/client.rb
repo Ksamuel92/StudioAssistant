@@ -12,6 +12,10 @@ class Client < ActiveRecord::Base
     def slug
         self.name.downcase.gsub(" ","-")
     end
+
+    # def slug_to_name(slug)
+    # slug.gsub("-", " ").capitalize
+    # end
   
 
 
