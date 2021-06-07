@@ -5,19 +5,9 @@
     <h6> * indicates a required field. </h6>
         <ul>
             <li><label for= "client_name">*Client Name:</label></li>
-            <li><input type="text" name="client[name]" id="client_name"></li></br>
-            
-            <% if @clients != nil %>
-            <li> Or choose from a list of returning clients.</li>
-            <select name="returning_client[name]" id="client_name">
-            <option value = nil></option>
-            <% @clients.each do |client|%>
-            <option value="<%= client.name %>"><%= client.name %></option>
-            <% end %>
-            </select>
-            <% end %>
+            <li><input type="text" name="client[name]" id="client_name"<%if @client %> value = "<%= @client.name %>" <% end %>></li></br>
             <li><label for= "client_email">*Client Email:</label></li>
-            <li><input type="text" name="client[email]" id="client_email"></li></br>
+            <li><input type="text" name="client[email]" id="client_email" <%if @client %> value = "<%= @client.email%>"" <% end %> ></li></br>
             <li><label for= "recording_session_genre">Genre:</label></li>
             <li><input type="text" name="recording_session[genre]" id="recording_session_genre"></li></br>
             <li><label for= "recording_session_budget">Budget:</label></li>
@@ -33,6 +23,7 @@
         </ul>
     </div>
     </br>
+    
     <h4>More Client Options </h4>
     <div id="client-options">
         <ul>
