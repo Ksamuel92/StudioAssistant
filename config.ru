@@ -8,6 +8,4 @@ use Rack::MethodOverride
 run ApplicationController
 use RecordingSessionsController
 use SessionController
-use ClientsController
-# use RecordingSessionsController
 use UsersController

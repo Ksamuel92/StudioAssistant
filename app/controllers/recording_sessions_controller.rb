@@ -3,8 +3,12 @@ class RecordingSessionsController < ApplicationController
   get "/recordingsessions" do
     validate_login
     current_user
+    if current_user
     @recording_sessions = current_user.recording_sessions.order(:start_date)
     @clients = current_user.clients.uniq
+    else
+      redirect '/login'
+    end
     erb :"/recording_sessions/index.html"
   end
 
