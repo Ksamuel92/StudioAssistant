@@ -23,6 +23,7 @@
   <% if !validate_login %> <li><a href= "/signup"> Sign Up</a></li> <% end %>
   <% if !validate_login %> <li><a href= "/login"> Log In</a></li> <% end %>
   <% if validate_login %> <li><a href= "/logout"> Log Out</a></li> <% end %>
+  <% if validate_login %> <li><a href= "/users/<%=current_user.slug%>"> User Profile</a></li> <% end %>
 </ul>
 </nav>
 

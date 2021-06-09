@@ -1,0 +1,17 @@
+<h2> Your Profile </h2>
+
+<ul>
+    <li>Name: <%=@user.name%></li>
+    <li>Email: <%=@user.email%></li>
+    <% if @user.location != "" %>
+    <li>Location: <%=@user.location%></li>
+    <% else %>
+    <p> Looks like you haven't added a location yet. Let's change <a href="/users/<%=@user.slug%>/edit">that!</a>
+    <% end %>
+</ul>
+
+<a href="/users/<%=@user.slug%>/edit"><input type="button" value= "Edit Your Profile"></a>
+<form method="POST" action= "/users/<%=@user.slug%>/delete">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete Your Profile">
+</form>
