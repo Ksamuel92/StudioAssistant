@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
 get '/signup' do
 
-    erb :"registration/signup"
+    erb :"sessions/signup"
     end
     
       post "/signup" do
