@@ -25,8 +25,8 @@ It will finish on <%= @recording_session.end_date %>!
 
 <% if @recording_session.per_hour && @recording_session.hours_per_day && @recording_session.budget%>
 <p> You are charging the client $<%= @recording_session.per_hour %> and working <%= @recording_session.hours_per_day%> hours per day.
- That adds up to $<%= (@recording_session.per_hour * @recording_session.hours_per_day) %> per day!</p>
-<p> Considering their budget, that adds up to about <%= ((@recording_session.budget)/(@recording_session.per_hour * @recording_session.hours_per_day)).floor() %> days. Double check with <%= @client.name %> if that's enough time. </p>
+ That adds up to $<%= @recording_session.amount_of_money_per_day %> per day!</p>
+<p> Considering their budget, that adds up to about <%= @recording_session.days_to_work_message %> Double check with <%= @client.name %> if that's enough time. </p>
 <% end %>
 
 <% if !@recording_session.per_hour || !@recording_session.hours_per_day %>
