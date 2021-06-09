@@ -70,8 +70,8 @@ helpers do
       @recording_session = RecordingSession.find_by_id(params[:id])
       @client = Client.find_by_slug(params[:slug])
       if !@recording_session || !@client
-        flash[:error] = "Something went wrong! Check your URL and try again."
-        redirect to "/recordingsessions"
+        flash[:error] = 'Something went wrong! Check your URL and try again.'
+        redirect to '/recordingsessions'
       end
     end
 
@@ -81,7 +81,10 @@ helpers do
     end
 
     def validate_dates
-      params[:recording_session][:end_date] < params[:recording_session][:start_date]
+     if params[:recording_session][:end_date] < params[:recording_session][:start_date]
+      flash[:error] = 'Your end date needs to be after your start date!'
+      redirect to '/recordingsessions/new'
+     end
     end
   end
 end
