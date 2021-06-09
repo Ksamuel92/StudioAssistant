@@ -6,7 +6,7 @@ get '/signup' do
     
       post "/signup" do
         params[:email].downcase
-        user = User.new(:name => params[:name], :email => params[:email], :location => params[:location], :password => params[:password])
+        user = User.new(params)
         if !user.save
           flash[:error] = "Make sure to fill the required fields and that your email address hasn't been used already."
           redirect to "/signup"
