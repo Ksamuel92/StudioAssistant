@@ -6,6 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>StudioAssistant</title>
 
@@ -14,18 +15,28 @@
     <% #<link rel="stylesheet" href="/stylesheets/main.css" /> %>
   </head>
   <body>
-    <div class="container">
-<nav>
-<ul class= "nav justify-content-center">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <a class= "navbar-brand" href= "/"> StudioAssistant </a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+ <ul class="navbar-nav mr-auto">
   <% if validate_login && current_user %>
-  <li class= "nav-item"><a class= "nav-link"  href="/recordingsessions">My Sessions</a></li>
+  <li class = "nav-item active"><a class= "nav-link"  href="/recordingsessions">My Sessions <span class="sr-only">(current)</span></a></li>
   <% end %>
   <% if !validate_login %> <li class= "nav-item"><a class= "nav-link" href= "/signup"> Sign Up</a></li> <% end %>
   <% if !validate_login %> <li class= "nav-item"><a class= "nav-link" href= "/login"> Log In</a></li> <% end %>
   <% if validate_login %> <li class= "nav-item"><a class= "nav-link"  href= "/users/<%=current_user.slug%>"> User Profile</a></li> <% end %>
   <% if validate_login %> <li class= "nav-item"><a class= "nav-link"  href= "/logout"> Log Out</a></li> <% end %>
 </ul>
+</div>
 </nav>
+
+<div class="container">
 
         <%= yield %>
 
