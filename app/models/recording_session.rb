@@ -18,4 +18,8 @@ class RecordingSession < ActiveRecord::Base
         "#{days_to_work} days."
         end
     end
+
+    def is_session_today?
+    Date.parse(start_date) == Date.today ? true : false
+    end
 end
