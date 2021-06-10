@@ -1,27 +1,49 @@
 <h2> Create A New Session </h2>
-<div class="form-group">
+<div>
     <form method="POST" action="/recordingsessions">
-    <div id="new-session">
+    <div class="form-group">
     <h6> * indicates a required field. </h6>
     <h6> All fields related to money are in USD. </h6>
-        <ul>
-            <li><label for= "client_name">*Client Name:</label></li>
-            <li><input type="text" name="client[name]" id="client_name"<%if @client %> value = "<%= @client.name %>" <% end %>></li></br>
-            <li><label for= "client_email">*Client Email:</label></li>
-            <li><input type="text" name="client[email]" id="client_email" <%if @client %> value = "<%= @client.email%>"" <% end %> ></li></br>
-            <li><label for= "recording_session_genre">Genre:</label></li>
-            <li><input type="text" name="recording_session[genre]" id="recording_session_genre"></li></br>
-            <li><label for= "recording_session_budget">Budget:</label></li>
-            <li><input type="number" step="1" name="recording_session[budget]" id="recording_session_budget"></li></br>
-            <li><label for = "start_date">*Start Date: </label></li>
-            <li><input type="date" name="recording_session[start_date]" id="start_date" min= <%= Date.today%>></li></br>
-            <li><label for = "end_date">End Date:</label></li>
-            <li><input type="date" name="recording_session[end_date]" id="end_date" min= <%= Date.today%> ></li></br>
-            <li><label for = "per_hour"> Rate Per Hour: </label></li>
-            <li><input type="number" step= "1" name="recording_session[per_hour]" id="per_hour"></li></br>
-            <li><label for = "hours_per_day"> Hours Per Day:</label></li>
-            <li><input type="number" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day"></li></br>
-        </ul>
+            <div class = "form-row">
+            <div class ="form-group col-md-6">
+            <label for= "client_name" class = "col-form-label">*Client Name</label>
+            <input type="text" class = "form-control"name="client[name]" id="client_name"<%if @client %> value = "<%= @client.name %>" <% end %>></li></br>
+            </div>
+            <div  class ="form-group col-md-6">
+            <label for= "client_email" class = "col-form-label">*Client Email</label></li>
+            <input type="text" class = "form-control" name="client[email]" id="client_email" <%if @client %> value = "<%= @client.email%>"" <% end %> ></li></br>
+            </div>
+            </div>
+            <div class = "form-row">
+            <div class = "form-group col-md-6">
+             <label for = "start_date" class = "col-form-label">*Start Date</label></li>
+            <input type="date" class = "form-control" name="recording_session[start_date]" id="start_date" min= <%= Date.today%>></></br>
+            </div>
+            <div class = "form-group col-md-6">
+            <label for = "end_date" class = "col-form-label">End Date</label></li>
+            <input type="date" class = "form-control"name="recording_session[end_date]" id="end_date" min= <%= Date.today%> ></></br>
+            </div>
+            </div>
+
+
+
+            <label for= "recording_session_genre" class = "col-form-label">Genre</label></li>
+            <input type="text" class = "form-control" name="recording_session[genre]" id="recording_session_genre"></li></br>
+             <div class ="form-row">
+             <div class = "form-group col-md"> 
+            <label for= "recording_session_budget" class = "col-form-label">Budget</label></li>
+            <input type="number" class = "form-control" step="1" name="recording_session[budget]" id="recording_session_budget"></li></br>
+            </div>
+            <div class = "form-group col-md">
+            <label for = "per_hour" class = "col-form-label"> Rate Per Hour</label></li>
+            <input type="number" class = "form-control" min="0" step= "1" name="recording_session[per_hour]" id="per_hour"></></br>
+            </div>
+            <div class = "form-group col-md">
+            <label for = "hours_per_day" class = "col-form-label"> Hours Per Day</label></li>
+            <input type="number" class = "form-control" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day"></></br>
+            </div>
+            </div>
+        
     </div>
     </br>
     
