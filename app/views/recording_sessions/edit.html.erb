@@ -1,45 +1,81 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2 class="text-center"> Edit Your Session </h2>
+<hr>
 <div class="form-group">
     <form method="POST" action="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>">
     <input type="hidden" name="_method" value="PATCH">
-    <div id="edit-session">
-        <ul>
-            <li><label for= "client_name">*Client Name:</label></li>
-            <li><input type="text" name="client[name]" id="client_name" value = "<%= @client.name %>" ></li></br>
-            <li><label for= "client_email">*Client Email:</label></li>
-            <li><input type="text" name="client[email]" id="client_email" value = "<%= @client.email %>"></li></br>
-            <li><label for= "recording_session_genre">Genre:</label></li>
-            <li><input type="text" name="recording_session[genre]" id="recording_session_genre" value = "<%= @recording_session.genre %>"></li></br>
-            <li><label for= "recording_session_budget">Budget:</label></li>
-            <li><input type="number" step="1" name="recording_session[budget]" id="recording_session_budget" value = "<%= @recording_session.budget %>"></li></br>
-            <li><label for = "start_date">*Start Date: </label></li>
-            <li><input type="date" name="recording_session[start_date]" id="start_date" min= <%= Date.today%> value = "<%= @recording_session.start_date %>"></li></br>
-            <li><label for = "end_date">End Date:</label></li>
-            <li><input type="date" name="recording_session[end_date]" id="end_date" min= <%= Date.today%> value = "<%= @recording_session.start_date %>"></li></br>
-            <li><label for = "per_hour"> Rate Per Hour: $</label></li>
-            <li><input ype="number" step= "1" name="recording_session[per_hour]" id="per_hour" value = "<%= @recording_session.per_hour %>"></li></br>
-            <li><label for = "hours_per_day"> Hours Per Day:</label></li>
-            <li><input ype="number" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day" value = "<%= @recording_session.hours_per_day %>"></li></br>
-        </ul>
+    <div class= "form-group">
+        <div class = "form-row">
+            <div class= "form-group col-md-6">
+            <label for= "client_name" class = "col-form-label"><p class = "font-weight-bold">Client Name</p></label>
+            <input type="text" class = "form-control" name="client[name]" id="client_name" value = "<%= @client.name %>" ></>
+            </div>
+
+           <div class= "form-group col-md-6">
+            <label for= "client_email" class = "col-form-label"><p class = "font-weight-bold">Client Email</p></label></li>
+            <input type="text" class = "form-control" name="client[email]" id="client_email" value = "<%= @client.email %>"></>
+            </div>
+
+            <div class= "form-group col-md-6">
+            <label for= "recording_session_genre" class = "col-form-label"><p class = "font-weight-bold">Genre</p></label>
+            <input type="text" class = "form-control" name="recording_session[genre]" id="recording_session_genre" value = "<%= @recording_session.genre %>">
+            </div>
+            <div class= "form-group col-md-6">
+            <label for= "recording_session_budget" class = "col-form-label"><p class = "font-weight-bold">Budget</p></label></li>
+            <input type="number" class = "form-control" step="1" name="recording_session[budget]" id="recording_session_budget" value = "<%= @recording_session.budget %>">
+            </div>
+            <div class= "form-group col-md-6">
+            <label for = "start_date" class = "col-form-label"><p class = "font-weight-bold">Start Date</p></label></li>
+            <input type="date" class = "form-control" name="recording_session[start_date]" id="start_date" min= <%= Date.today%> value = "<%= @recording_session.start_date %>">
+            </div>
+            <div class= "form-group col-md-6">
+            <label for = "end_date" class = "col-form-label"><p class = "font-weight-bold">End Date</p></label></li>
+            <input type="date" class = "form-control" name="recording_session[end_date]" id="end_date" min= <%= Date.today%> value = "<%= @recording_session.start_date %>">
+            </div>
+            <div class= "form-group col-md-6">
+            <label for = "per_hour" class = "col-form-label"><p class = "font-weight-bold">Rate (Per Hour)</p></label>
+            <input type="number" class = "form-control" min=0 step= "1" name="recording_session[per_hour]" id="per_hour" value = "<%= @recording_session.per_hour %>">
+            </div>
+            <div class= "form-group col-md-6">
+            <label for = "hours_per_day" class = "col-form-label"><p class = "font-weight-bold">Hours (Per Day)</p></label>
+            <input type="number" class = "form-control" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day" value = "<%= @recording_session.hours_per_day %>">
+            </div>
     </div>
-    </br>
-    <h4>More Client Options </h4>
-    <div id="client-options">
-        <ul>
-            <li><label for= "recording_session_producer"> Is the client bringing their own producer(s)?</label></li>
-            <li>Yes: <input type="radio" name="recording_session[has_producer?]" value="true" <%='checked' if @recording_session.has_producer? == true %>>
-            No: <input type="radio" name="recording_session[has_producer?]" value="false" <%='checked' if @recording_session.has_producer? == false %>></li>
-            <li><label for= "recording_session_band"> Is the client bringing their own band?</label></li>
-            <li>Yes: <input type="radio" name="recording_session[band?]" value="true" <%='checked' if @recording_session.band? == true %>>
-            No: <input type="radio" name="recording_session[band?]" value="false"<%='checked' if @recording_session.band? == false %>></li>
-            <li><label for= "recording_session_drums"> Is the client bringing their own drums?</label></li>
-            <li>Yes: <input type="radio" name="recording_session[drums?]" value="true"<%='checked' if @recording_session.drums? == true %>>
-            No: <input type="radio" name="recording_session[drums?]" value="false"<%='checked' if @recording_session.drums? == false %>></li>
-        </ul>
-    <h5><label for="recording_session_comments"> Additional Comments Regarding Client </h5>
-    <textarea id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50" value = <%= @recording_session.additional_comments %>>
     
-</textarea>
+    
+    <h4>More Client Options </h4>
+        <p class= "font-weight-light">Is the client bringing their own producer(s)?</p>
+        <div class="custom-control custom-radio">
+        <input id = "recording_session_producer_yes" type="radio" name="recording_session[has_producer?]" class= "custom-control-input" value="true" <%='checked' if @recording_session.has_producer? == true %>>
+        <label for="recording_session_producer_yes" class= "custom-control-label"> Yes </label>
+        </div>
+        <div class="custom-control custom-radio">
+        <input id = "recording_session_producer_no" type="radio" name="recording_session[has_producer?]" class= "custom-control-input" value="false" <%='checked' if @recording_session.has_producer? == false %>>
+        <label for="recording_session_producer_no" class= "custom-control-label"> No </label>
+        </div>
+
+        <p class= "font-weight-light">Is the client bringing their own band?</p>
+        <div class="custom-control custom-radio">
+        <input id = "recording_session_band_yes" type="radio" name="recording_session[band?]" class= "custom-control-input" value="true" <%='checked' if @recording_session.band? == true %>>
+        <label for="recording_session_band_yes" class= "custom-control-label"> Yes </label>
+        </div>
+         <div class="custom-control custom-radio">
+        <input id = "recording_session_band_no" type="radio" name="recording_session[band?]" class= "custom-control-input" value="false" <%='checked' if @recording_session.band? == false %>>
+        <label for="recording_session_band_no" class= "custom-control-label"> No </label>
+        </div>
+
+        <p class= "font-weight-light">Is the client bringing their own drums?</p>
+        <div class="custom-control custom-radio">
+        <input id = "recording_session_drums_yes" type="radio" name="recording_session[drums?]" class= "custom-control-input" value="true" <%='checked' if @recording_session.drums? == true %>>
+        <label for="recording_session_drums_yes" class= "custom-control-label"> Yes </label>
+        </div>
+         <div class="custom-control custom-radio">
+        <input id = "recording_session_drums_no" type="radio" name="recording_session[drums?]" class= "custom-control-input"  value="false" <%='checked' if @recording_session.drums? == false %>>
+        <label for="recording_session_drums_no" class= "custom-control-label"> No </label>
+        </div>
+        
+    <h5><label for="recording_session_comments"> Additional Comments Regarding Client </h5>
+    <textarea class="form-control" id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50" value = <%= @recording_session.additional_comments %>> </textarea>
+    </br>
+    <button type="submit" class="btn btn-primary">Edit Session</button>
     </div>
-    <input type="Submit" value= "Edit Session">
     </form>
