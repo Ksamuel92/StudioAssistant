@@ -7,65 +7,78 @@
             <div class = "form-row">
             <div class ="form-group col-md-6">
             <label for= "client_name" class = "col-form-label">*Client Name</label>
-            <input type="text" class = "form-control"name="client[name]" id="client_name"<%if @client %> value = "<%= @client.name %>" <% end %>></li></br>
+            <input type="text" class = "form-control"name="client[name]" id="client_name"<%if @client %> value = "<%= @client.name %>" <% end %>></li>
             </div>
             <div  class ="form-group col-md-6">
             <label for= "client_email" class = "col-form-label">*Client Email</label></li>
-            <input type="text" class = "form-control" name="client[email]" id="client_email" <%if @client %> value = "<%= @client.email%>"" <% end %> ></li></br>
+            <input type="text" class = "form-control" name="client[email]" id="client_email" <%if @client %> value = "<%= @client.email%>"" <% end %> ></li>
             </div>
             </div>
             <div class = "form-row">
             <div class = "form-group col-md-6">
              <label for = "start_date" class = "col-form-label">*Start Date</label></li>
-            <input type="date" class = "form-control" name="recording_session[start_date]" id="start_date" min= <%= Date.today%>></></br>
+            <input type="date" class = "form-control" name="recording_session[start_date]" id="start_date" min= <%= Date.today%>></>
             </div>
             <div class = "form-group col-md-6">
             <label for = "end_date" class = "col-form-label">End Date</label></li>
-            <input type="date" class = "form-control"name="recording_session[end_date]" id="end_date" min= <%= Date.today%> ></></br>
+            <input type="date" class = "form-control"name="recording_session[end_date]" id="end_date" min= <%= Date.today%> ></>
             </div>
             </div>
 
 
 
             <label for= "recording_session_genre" class = "col-form-label">Genre</label></li>
-            <input type="text" class = "form-control" name="recording_session[genre]" id="recording_session_genre"></li></br>
+            <input type="text" class = "form-control" name="recording_session[genre]" id="recording_session_genre"></li> </br>
              <div class ="form-row">
              <div class = "form-group col-md"> 
             <label for= "recording_session_budget" class = "col-form-label">Budget</label></li>
-            <input type="number" class = "form-control" step="1" name="recording_session[budget]" id="recording_session_budget"></li></br>
+            <input type="number" class = "form-control" step="1" name="recording_session[budget]" id="recording_session_budget" placeholder= "USD">
             </div>
             <div class = "form-group col-md">
             <label for = "per_hour" class = "col-form-label"> Rate Per Hour</label></li>
-            <input type="number" class = "form-control" min="0" step= "1" name="recording_session[per_hour]" id="per_hour"></></br>
+            <input type="number" class = "form-control" min="0" step= "1" name="recording_session[per_hour]" id="per_hour" placehoder = "USD">
             </div>
             <div class = "form-group col-md">
             <label for = "hours_per_day" class = "col-form-label"> Hours Per Day</label></li>
-            <input type="number" class = "form-control" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day"></></br>
+            <input type="number" class = "form-control" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day"></>
             </div>
             </div>
-        
-    </div>
-    </br>
     
     <h4>More Client Options </h4>
-    <div id="client-options">
-        <ul>
-            <li><label for= "recording_session_producer"> Is the client bringing their own producer(s)?</label></li>
-            <li>Yes: <input type="radio" name="recording_session[has_producer?]" value="true">
-            No: <input type="radio" name="recording_session[has_producer?]" value="false"></li>
-            <li><label for= "recording_session_band"> Is the client bringing their own band?</label></li>
-            <li>Yes: <input type="radio" name="recording_session[band?]" value="true">
-            No: <input type="radio" name="recording_session[band?]" value="false"></li>
-            <li><label for= "recording_session_drums"> Is the client bringing their own drums?</label></li>
-            <li>Yes: <input type="radio" name="recording_session[drums?]" value="true">
-            No: <input type="radio" name="recording_session[drums?]" value="false"></li>
-        </ul>
+    <strong>Is the client bringing their own producer(s)?</strong>
+            <div class="custom-control custom-radio">
+             <input id = "recording_session_producer" type="radio" class="custom-control-input" name="recording_session[has_producer?]" value="true">
+            <label for= "recording_session_producer" class="custom-control-label"> Yes </label>
+            </div>
+            <div class= "custom-control custom-radio">
+             <input id = "recording_session_producer"  type="radio" class="custom-control-input" name="recording_session[has_producer?]" value="false">
+             <label for= "recording_session_producer"class="custom-control-label"> No </label>
+             </div>
+             <strong>Is the client bringing their own band?</strong>
+             <div class= "custom-control custom-radio">
+              <input id="recording_session_band" type="radio" class="custom-control-input" name="recording_session[band?]" value="true">
+               <label for= "recording_session_band" class="custom-control-label"> Yes </label>
+               </div>
+               <div class= "custom-control custom-radio">
+              <input type="radio"class="custom-control-input"name="recording_session[band?]" value="false">
+              <label for= "recording_session_band" class="custom-control-label"> No </label>
+            </div>
+            <strong>Is the client bringing their own drums?</strong>
+            <div class= "custom-control custom-radio">
+            <input type="radio" class="custom-control-input"name="recording_session[drums?]" value="true">
+            <label for= "recording_session_drums" class="custom-control-label"> Yes </label>
+            </div>
+            <div class= "custom-control custom-radio">
+            <input type="radio"  class="custom-control-input" name="recording_session[drums?]" value="false">
+            <label for= "recording_session_drums" class="custom-control-label"> No </label>
+            </div>
+  
     <h5><label for="recording_session_comments"> Additional Comments Regarding Client </h5>
-    <textarea id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50">
+    <textarea class="form-control" id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50">
     
 </textarea>
+ <button type="submit" class="btn btn-primary">Create Session</button>
     </div>
-    <input type="Submit" value= "Create Session">
     </form>
 
     <% if flash[:error] %>
