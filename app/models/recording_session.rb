@@ -19,7 +19,28 @@ class RecordingSession < ActiveRecord::Base
         end
     end
 
+    def start_date_in_correct_format
+        Date.parse(start_date).strftime("%m/%d/%Y")
+    end
+    
+    def end_date_in_correct_format
+        Date.parse(end_date).strftime("%m/%d/%Y")
+    end
+
     def is_session_today?
     Date.parse(start_date) == Date.today ? true : false
     end
+
+    def format_budget
+        Money.from_amount(budget, "USD").format
+    end
+
+    def format_rate
+        Money.from_amount(per_hour, "USD").format
+    end
+
+    def format_amount_of_money_per_day
+        Money.from_amount(amount_of_money_per_day, "USD").format
+    end
+
 end
