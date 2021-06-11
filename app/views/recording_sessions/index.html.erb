@@ -3,7 +3,7 @@
     <h6><%= flash[:error]%></h6>
 <% end %>
 <% if @recording_sessions != [] %>
-   <p class=" font-weight-thin text-center text-muted">Hi <%= current_user.name %>! Here are your sessions</p>
+   <p class="font-weight-thin text-center text-muted"><%=current_user.name%>, here's what's on the books</p>
     <table class="table table-bordered table-hover"> 
     <thead>
     <tr>
