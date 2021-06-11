@@ -2,7 +2,6 @@ Built With
 Sinatra
 Bootstrap
 
-
 StudioAssistant
 
 StudioAssistant is a content management system that allows Studio Owners to manage their sessions so they are prepared to meet any client's needs.

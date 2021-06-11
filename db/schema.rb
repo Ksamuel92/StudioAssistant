@@ -11,39 +11,37 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_06_03_135013) do
-
-  create_table "clients", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email"
+  create_table 'clients', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'email'
   end
 
-  create_table "recording_sessions", force: :cascade do |t|
-    t.string "start_date"
-    t.string "end_date"
-    t.integer "per_hour"
-    t.integer "hours_per_day"
-    t.text "specialized_gear"
-    t.integer "user_id"
-    t.integer "client_id"
-    t.boolean "band?"
-    t.boolean "has_producer?"
-    t.string "genre"
-    t.integer "budget"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "additional_comments"
-    t.boolean "drums?"
+  create_table 'recording_sessions', force: :cascade do |t|
+    t.string 'start_date'
+    t.string 'end_date'
+    t.integer 'per_hour'
+    t.integer 'hours_per_day'
+    t.text 'specialized_gear'
+    t.integer 'user_id'
+    t.integer 'client_id'
+    t.boolean 'band?'
+    t.boolean 'has_producer?'
+    t.string 'genre'
+    t.integer 'budget'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.text 'additional_comments'
+    t.boolean 'drums?'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.string "name"
-    t.string "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'email'
+    t.string 'password_digest'
+    t.string 'name'
+    t.string 'location'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

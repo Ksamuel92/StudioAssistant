@@ -1,4 +1,4 @@
-ENV["SINATRA_ENV"] = "test"
+ENV['SINATRA_ENV'] = 'test'
 
 require_relative '../config/environment'
 require 'rack/test'
@@ -18,13 +18,9 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   DatabaseCleaner.strategy = :truncation
 
-  config.before do
-    DatabaseCleaner.clean
-  end
+  config.before { DatabaseCleaner.clean }
 
-  config.after do
-    DatabaseCleaner.clean
-  end
+  config.after { DatabaseCleaner.clean }
 
   config.order = 'default'
 end
