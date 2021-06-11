@@ -1,17 +1,21 @@
-<h2> Your Profile </h2>
+<h2 class="display-2 text-center"> Your Profile </h2>
 
-<ul>
-    <li>Name: <%=@user.name%></li>
-    <li>Email: <%=@user.email%></li>
+
+
+
+<ul class = "list-group">
+<li class="list-group-item"> <h6 class= "font-weight-thin">Name</h6> <%=@user.name%> </li>
+<li class = "list-group-item"><h6 class = "font-weight-thin">Email</h6> <%=@user.email%></li>
     <% if @user.location != "" %>
-    <li>Location: <%=@user.location%></li>
+    <li class = "list-group-item"><h6 class = "font-weight-thin">Location</h6> <%=@user.location%> </li>
     <% else %>
-    <p> Looks like you haven't added a location yet. Let's change <a href="/users/<%=@user.slug%>/edit">that!</a>
+    <li class = "list-group-item"><h6 class ="font-weight-thin"> Location </h6><p class = "font-weight-light text-muted"> Looks like you haven't added a location yet. Let's change <a href="/users/<%=@user.slug%>/edit">that!</a></li>
     <% end %>
 </ul>
-
-<a href="/users/<%=@user.slug%>/edit"><input type="button" value= "Edit Your Profile"></a>
+<div class = "btn-group" role ="group" aria-label= "Edit or Delete Profile">
+<a href="/users/<%=@user.slug%>/edit"><button type="button" class = "btn btn-primary"> Edit Your Profile</button></a>
 <form method="POST" action= "/users/<%=@user.slug%>/delete">
 <input type="hidden" name="_method" value="DELETE">
-<input type="submit" value="Delete Your Profile">
+<button type="submit" class="btn btn-danger"> Delete Your Profile </button>
 </form>
+</div>
