@@ -74,7 +74,11 @@
         </div>
         
         <h5 class="font-weight-light mt-3"><label for="recording_session_comments"> Additional Comments</h5>
-        <textarea class="form-control" id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50" value = <%= @recording_session.additional_comments %>> </textarea>
+        <textarea class="form-control" id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50"> 
+        <% if @recording_session.additional_comments%>
+        <%= @recording_session.additional_comments%>
+        <% end %>
+        </textarea>
         </br>
         <button type="submit" class="btn btn-primary border">Edit Session</button>
     </form>
