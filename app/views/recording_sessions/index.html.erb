@@ -1,10 +1,9 @@
-<h1>StudioAssistant</h1>
+<h1 class="text-center display-1">Your Sessions</h1>
 <% if flash[:error]%>
     <h6><%= flash[:error]%></h6>
 <% end %>
-<h2>Hi <%= current_user.name %>! Here are your sessions</h2>
 <% if @recording_sessions != [] %>
-   
+   <h2 class="text-center">Hi <%= current_user.name %>! Here are your sessions</h2>
     <table class="table table-bordered table-hover"> 
     <caption>List of sessions</caption>
     <thead>
@@ -32,21 +31,18 @@
 
                  
 <% else %>
-    <h3> Looks like you don't have any sessions yet!</h3>
+    <p class="text-center leadç "> Create a new session below</p>
 <% end %>
-</br>
-</br>
-<div class="linkbox">
-    <ul>
-        <li><a href="/recordingsessions/new"><input type="button" value = "New Session"></a></li>
-        
-            <% if @clients != [] %>
-            <li> Or book a new session with a current client! </li>
-            <%@clients.each do |client|%>
-            <a href= "/recordingsessions/<%= client.slug %>/new"><%= client.name%> - <%= client.email%></a>
-            <% end %>
-            <% end %>
 
-        <li><a href="/logout"><input type="button" value = "Log Out"></a></li>
-    </ul>
 
+   
+        <% if @clients != [] %> 
+        Or book a new session with a current client! </li>
+        <%@clients.each do |client|%>
+        <a href= "/recordingsessions/<%= client.slug %>/new"><button type="button" class= "btn btn-primary"><%= client.name%> - <%= client.email%></button></a>
+        <% end %>
+            <% end %>
+        <div class="text-center m-1">
+        <a href="/recordingsessions/new"><button type="button" class ="btn btn-primary">New Session</button></a>
+        <a href="/logout"><button type="button" class = "btn btn-primary">Log Out</button></a>
+       </div>
