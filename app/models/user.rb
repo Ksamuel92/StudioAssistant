@@ -16,4 +16,6 @@ class User < ActiveRecord::Base
   def slug_to_name(slug)
     self.slug.gsub('-', ' ').capitalize
   end
+
+
 end
