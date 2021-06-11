@@ -13,9 +13,9 @@
     <% end %>
 </ul>
 <div class = "btn-group" role ="group" aria-label= "Edit or Delete Profile">
-<a href="/users/<%=@user.slug%>/edit"><button type="button" class = "btn btn-primary"> Edit Your Profile</button></a>
+<a href="/users/<%=@user.slug%>/edit"><button type="button" class = "btn btn-primary border"> Edit Your Profile</button></a>
 <form method="POST" action= "/users/<%=@user.slug%>/delete">
 <input type="hidden" name="_method" value="DELETE">
-<button type="submit" class="btn btn-danger"> Delete Your Profile </button>
+<button type="submit" class="btn btn-danger border"> Delete Your Profile </button>
 </form>
 </div>

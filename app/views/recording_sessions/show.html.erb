@@ -1,47 +1,62 @@
-<h1>This is the show page for an individual instance of your model.</h1>
-<h2>Hi, <strong><%= @user.name %></strong>! Here's what to expect for your session on <%= @recording_session.start_date %></h2>
-<div class="info-box" id="client-box">
-<p> <%= @client.name %> is our client. They have a <%= @recording_session.genre %> project.</p>
-<p> <%if @recording_session.budget %> Our client's budget is $<%= @recording_session.budget %>. If there's a problem with that, email them at <%= @client.email %>. 
-<% else %> You still need to contact your client at <%= @client.email %> to discuss budget. <% end %> </p>
 
+<h4 class = "text-center display-4 font-weight-thin">Here's what to expect for your session on <strong><%= @recording_session.start_date_in_correct_format %></strong></h4>
 
-
-<% if @recording_session.band?%> They are bringing their own band. No need to hire any musicians. </br> <% end %>
-<% if @recording_session.drums?%>They are bringing their own drums. They will use their own time to set up their kit. </br> <% end %>
-<% if @recording_session.has_producer?%> They have a producer they have hired. </br> <% end %>
+<div class="card w-100">
+  <div class="card-body">
+  <h5 class = "card-title"> Client Overview </h5>
+  <h6 class = "card-subtitle mb-2 text-muted"> Client Budget and Contact </h6>
+<h6 class = "card-text font-weight-thin m-3"> <%= @client.name %> is our client. They have a <%= @recording_session.genre %> project.</h6>
+<h6 class = "card-text font-weight-thin m-3"> <%if @recording_session.budget %> Our client's budget is <%= @recording_session.format_budget %>. If there's a problem with that, email them at <%= @client.email %>. </p>
+<% else %> <p class = "card-text"> You still need to contact your client at <%= @client.email %> to discuss budget. <% end %> </p>
+</div>
 </div>
 
-<div class= "info-box" id="session-box">
-<p> This session is set to begin on <%= @recording_session.start_date %>!
+<div class = "card w-100">
+  <div class= "card-body">
+    <h5 class = "card-title"> Client Variables </h5>
+    <h6 class = "card-subtitle mb-2 text-muted"> Things to keep in mind when setting up the session. </h6>
+<h6 class = "card-text font-weight-thin m-3"><% if @recording_session.band?%> They are bringing their own band. No need to hire any musicians. <% end %> </h6>
+<h6 class = "card-text font-weight-thin m-3"><% if @recording_session.drums?%>They are bringing their own drums. They will use their own time to set up their kit. </br> <% end %></h6>
+<h6 class = "card-text font-weight-thin m-3"><% if @recording_session.has_producer?%> They have a producer they have hired.  <% end %> </h6>
+</div>
+</div>
 
-
+<div class = "card w-100">
+  <div class= "card-body">
+    <h5 class= "card-title"> Session Overview </h5>
+      <h6 class = "card-subtitle mb-2 text-muted"> Know when to go home. </h6>
+<h6 class = "card-text font-weight-thin m-3"> This session is set to begin on <%= @recording_session.start_date_in_correct_format %>! </h6>
 <% if @recording_session.end_date == "" || @recording_session.end_date == @recording_session.start_date %> 
-No end date is set, so it will go until it's finished! If you believe this is a mistake, go ahead and change that <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a>
+<h6 class = "card-text font-weight-thin m-3"> No end date is set, so it will go until it's finished! If you believe this is a mistake, go ahead and change that <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a> </h6>
 <% else %> 
-It will finish on <%= @recording_session.end_date %>!
+<h6 class = "card-text font-weight-thin m-3">It will finish on <%= @recording_session.end_date_in_correct_format %>!</h6>
 <% end %> </p>
-
-
 <% if @recording_session.per_hour && @recording_session.hours_per_day && @recording_session.budget%>
-<p> You are charging the client $<%= @recording_session.per_hour %> and working <%= @recording_session.hours_per_day%> hours per day.
- That adds up to $<%= @recording_session.amount_of_money_per_day %> per day!</p>
-<p> Considering their budget, that adds up to about <%= @recording_session.days_to_work_message %> Double check with <%= @client.name %> if that's enough time. </p>
+<h6 class = "card-text font-weight-thin m-3">You are charging the client <%= @recording_session.format_rate %> and working <%= @recording_session.hours_per_day%> hours per day.
+ That adds up to <%= @recording_session.format_amount_of_money_per_day %> per day!</h6>
+<h6 class = "card-text font-weight-thin m-3"> Considering their budget, that adds up to about <%= @recording_session.days_to_work_message %> Double check with <%= @client.name %> if that's enough time. </h6>
 <% end %>
-
 <% if !@recording_session.per_hour || !@recording_session.hours_per_day %>
-<p> If you are charging the client hourly, make sure to add that information <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a> <p>
+<h6 class = "card-text font-weight-thin m-3"> If you are charging the client hourly, make sure to add that information <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> here. </a> </h6>
 <% end %>
+</div>
+</div>
 
 <% if @recording_session.additional_comments%>
-<p> <strong>Additional Comments:</strong> <%= @recording_session.additional_comments%> </p>
+<div class = "card w-100">
+  <div class = "card-body">
+    <h5 class = "card-title"> Additonal Comments </h5>
+<h6 class = "card-text font-weight-thin m-3"> <%= @recording_session.additional_comments%> </h6>
+  </div>
+  </div>
 <% end %>
-</div>
 
 
-<div class = "link-box" id = "edit-delete-box">
-  <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> <input type = "button" value = "Edit Your Session"></a>
+
+ <div class = "btn-group" role ="group" aria-label= "Edit or delete this session">
+  <a href="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/edit"> <button type = "button" class = "btn btn-primary mt-3 border"> Edit Your Session</button></a>
   <form method="post" action="/recordingsessions/<%= @client.slug %>/<%= @recording_session.id %>/delete">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value = "Delete Your Session">
+  <button type="submit" class = "btn btn-danger mt-3 border">Delete Your Session</button>
   </form>
+  </div>
