@@ -8,6 +8,7 @@
       <thead>
         <tr>
           <th scope="col">Client</th>
+          <th scope="col">Email</th>
           <th scope="col">Start Date</th>
           <th scope="col">Genre</th>
           <th scope="col">Session Options</th>
@@ -17,15 +18,16 @@
         <%@recording_sessions.all.each do |session|%>
         <% if session.is_session_today? %> <tr class ="table-danger"> <% else %> <tr> <% end%>
           <th scope="row"><%= session.client.name %></th>
-            <td><%= session.start_date %></td>
-            <td class = "text-center"><% if session.genre = "" %> None Given <% else %> <%= session.genre %> <%end%></td>
+            <td> <%= session.client.email%> </td>
+            <td><%= session.start_date_in_correct_format %></td>
+            <td class = "text-center"><% if session.genre == "" %> None Given <% else %> <%= session.genre %> <%end%></td>
             <td class = "text-center">
               <div class = "btn-group" role ="group" aria-label= "View, edit or delete">
                 <a class= "center-text" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"><button class = "btn btn-primary border" > View </button> </a>
                 <a class = "mx-auto" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/edit"><button class = "btn btn-primary border" >Edit </button> </a>
                 <form method="post" action="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/delete">
                   <input type="hidden" name="_method" value="delete">
-                  <button type=submit class = "btn btn-danger border ml-3"> Delete</button>
+                  <button type=submit class = "btn btn-danger border ml-3"> Delete Session</button>
                 </form>
               </div>
             </td>
