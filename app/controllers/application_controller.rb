@@ -30,7 +30,7 @@ helpers do
 
   def can_edit_profile?
     current_user
-    if @user != User.find_by_slug(params[:slug])
+    if @user != User.find_by_id(params[:id])
       flash[:error] = 'You are not authorized to edit this profile! Play nice.'
       redirect to "/users/#{@user.slug}"
     end
@@ -46,7 +46,8 @@ helpers do
 
   def can_view_profile?
     current_user
-    if current_user != User.find_by_slug(params[:slug])
+    
+    if current_user != User.find_by_id(params[:id])
       flash[:error] = 'You are not authorized to view that profile!'
       redirect to '/recordingsessions'
     end
