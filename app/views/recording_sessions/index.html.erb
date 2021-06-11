@@ -41,11 +41,14 @@
 
    
         <% if @clients != [] %> 
-        <h5 class = "font-weight-lead">Or book a new session with a current client! </h5>
+        <h5 class = "font-weight-thin m-1">Or book a new session with a current client! </h5>
+        <div class="btn-group " role ="group" aria-label= "Book with a current client.">
         <%@clients.each do |client|%>
-        <a href= "/recordingsessions/<%= client.slug %>/new"><button type="button" class= "btn btn-outline-primary"><%= client.name%></button></a>
+        <a href= "/recordingsessions/<%= client.slug %>/new"><button type="button" class= "btn btn-outline-primary m-1 border"><%= client.name%></button></a>
         <% end %>
             <% end %>
+        </div>
+        <hr>
         <div class="text-center m-1">
         <a href="/recordingsessions/new"><button type="button" class ="btn btn-primary">New Session</button></a>
         <a href="/logout"><button type="button" class = "btn btn-primary">Log Out</button></a>

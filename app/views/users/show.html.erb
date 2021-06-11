@@ -12,10 +12,10 @@
     <li class = "list-group-item"><h6 class ="font-weight-thin"> Location </h6><p class = "font-weight-light text-muted"> Looks like you haven't added a location yet. Let's change <a href="/users/<%=@user.slug%>/edit">that!</a></li>
     <% end %>
 </ul>
-<div class = "btn-group" role ="group" aria-label= "Edit or Delete Profile">
-<a href="/users/<%=@user.slug%>/edit"><button type="button" class = "btn btn-primary border"> Edit Your Profile</button></a>
+<div class = "btn-group mt-3" role ="group" aria-label= "Edit or Delete Profile">
+<a href="/users/<%=@user.slug%>/edit"><button type="button" class = "btn btn-primary text-center m-1 border"> Edit Your Profile</button></a>
 <form method="POST" action= "/users/<%=@user.slug%>/delete">
 <input type="hidden" name="_method" value="DELETE">
-<button type="submit" class="btn btn-danger border"> Delete Your Profile </button>
+<button type="submit" class="btn btn-danger text-center m-1 border"> Delete Your Profile </button>
 </form>
 </div>
