@@ -3,7 +3,7 @@
     <h6><%= flash[:error]%></h6>
 <% end %>
 <% if @recording_sessions != [] %>
-   <h2 class="text-center">Hi <%= current_user.name %>! Here are your sessions</h2>
+   <p class=" font-weight-thin text-center text-muted">Hi <%= current_user.name %>! Here are your sessions</p>
     <table class="table table-bordered table-hover"> 
     <caption>List of sessions</caption>
     <thead>
@@ -19,12 +19,17 @@
       <% if session.is_session_today? %> <tr class ="table-danger"> <% else %> <tr> <% end%>
       <th scope="row"><%= session.client.name %></th>
       <td><%= session.start_date %></td>
-      <td><%= session.genre %></td>
-      <td><a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"> View Your Session </a>
-      <a href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/edit">Edit Your Session</a>
+      <td class = "text-center"><% if session.genre = "" %> None Given <% else %> <%= session.genre %> <%end%></td>
+      <td class = "text-center">
+      <div class = "btn-group" role ="group" aria-label= "View, edit or delete">
+      <a class= "center-text" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"><button class = "btn btn-primary border" > View </button> </a>
+      <a class = "mx-auto" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/edit"><button class = "btn btn-primary border" >Edit </button> </a>
       <form method="post" action="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/delete">
       <input type="hidden" name="_method" value="delete">
-       <input type="submit" value = "Delete This Session">
+      <button type=submit class = "btn btn-danger border ml-3"> Delete</button>
+      </form>
+      </div>
+       </td>
       <% end %>
     </tbody>
 </table>
@@ -37,9 +42,9 @@
 
    
         <% if @clients != [] %> 
-        Or book a new session with a current client! </li>
+        <h5 class = "font-weight-lead">Or book a new session with a current client! </h5>
         <%@clients.each do |client|%>
-        <a href= "/recordingsessions/<%= client.slug %>/new"><button type="button" class= "btn btn-primary"><%= client.name%> - <%= client.email%></button></a>
+        <a href= "/recordingsessions/<%= client.slug %>/new"><button type="button" class= "btn btn-outline-primary"><%= client.name%></button></a>
         <% end %>
             <% end %>
         <div class="text-center m-1">
