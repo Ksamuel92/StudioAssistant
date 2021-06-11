@@ -1,50 +1,50 @@
-<h2 class="text-center"> Create A New Session </h2>
+<h2 class="text-center display-3 mt-2"> Create A New Session </h2>
 <hr>
 <div>
     <form method="POST" action="/recordingsessions">
     <div class="form-group">
             <div class = "form-row">
             <div class ="form-group col-md-6">
-            <label for= "client_name" class = "col-form-label"><p class="font-weight-bold">Client Name</p></label>
+            <label for= "client_name" class = "col-form-label"><h6 class="font-weight-thin">Client Name</h6></label>
             <input type="text" class = "form-control" name="client[name]" placeholder="Required" id="client_name"<%if @client %> value = "<%= @client.name %>" <% end %>></li>
             </div>
             <div  class ="form-group col-md-6">
-            <label for= "client_email" class = "col-form-label"><p class="font-weight-bold">Client Email</p></label></li>
+            <label for= "client_email" class = "col-form-label"><h6 class="font-weight-thin">Client Email</h6></label></li>
             <input type="text" class = "form-control" name="client[email]" id="client_email" placeholder="Required" <%if @client %> value = "<%= @client.email%>"" <% end %> ></li>
             </div>
             </div>
             <div class = "form-row">
             <div class = "form-group col-md-6">
-             <label for = "start_date" class = "col-form-label"><p class="font-weight-bold">Start Date</p></label></li>
+             <label for = "start_date" class = "col-form-label"><h6 class="font-weight-thin">Start Date</h6></label></li>
             <input type="date" class = "form-control" name="recording_session[start_date]" placeholder="Required" id="start_date" min= <%= Date.today%>></>
             </div>
             <div class = "form-group col-md-6">
-            <label for = "end_date" class = "col-form-label"><p class="font-weight-bold">End Date</p></label></li>
+            <label for = "end_date" class = "col-form-label"><h6 class="font-weight-thin">End Date</h6></label></li>
             <input type="date" class = "form-control"name="recording_session[end_date]" placeholder="Required" id="end_date" min= <%= Date.today%> ></>
             </div>
             </div>
 
 
 
-            <label for= "recording_session_genre" class = "col-form-label"><p class="font-weight-bold">Genre</p></label></li>
+            <label for= "recording_session_genre" class = "col-form-label"><h6 class="font-weight-thin">Genre</h6></label></li>
             <input type="text" class = "form-control" name="recording_session[genre]" id="recording_session_genre"></li> </br>
              <div class ="form-row">
              <div class = "form-group col-md"> 
-            <label for= "recording_session_budget" class = "col-form-label"><p class="font-weight-bold">Budget</p></label></li>
+            <label for= "recording_session_budget" class = "col-form-label"><h6 class="font-weight-thin">Budget</h6></label></li>
             <input type="number" class = "form-control" step="1" name="recording_session[budget]" id="recording_session_budget" placeholder= "USD">
             </div>
             <div class = "form-group col-md">
-            <label for = "per_hour" class = "col-form-label"><p class="font-weight-bold">Rate (Per Hour)</p></label></li>
+            <label for = "per_hour" class = "col-form-label"><h6 class="font-weight-thin">Rate (Per Hour)</h6></label></li>
             <input type="number" class = "form-control" min="0" step= "1" name="recording_session[per_hour]" id="per_hour" placehoder = "USD">
             </div>
             <div class = "form-group col-md">
-            <label for = "hours_per_day" class = "col-form-label"> <p class="font-weight-bold">Hours (Per Day)</p></label></li>
+            <label for = "hours_per_day" class = "col-form-label"> <h6 class="font-weight-thin">Hours (Per Day)</h6></label></li>
             <input type="number" class = "form-control" min="1" max="24" name="recording_session[hours_per_day]" id="hours_per_day"></>
             </div>
             </div>
-    
+    <hr>
     <h4>More Client Options </h4>
-    <p class= "font-weight-light">Is the client bringing their own producer(s)?</p>
+    <p class= "font-weight-light m-0">Is the client bringing their own producer(s)?</p>
             <div class="custom-control custom-radio">
             <input id = "recording_session_producer_yes" type="radio" class="custom-control-input" name="recording_session[has_producer?]" value="true">
             <label for= "recording_session_producer_yes" class="custom-control-label"> Yes </label>
@@ -53,7 +53,7 @@
              <input id = "recording_session_producer_no"  type="radio" class="custom-control-input" name="recording_session[has_producer?]" value="false">
              <label for= "recording_session_producer_no"class="custom-control-label"> No </label>
              </div>
-             <p class= "font-weight-light">Is the client bringing their own band?</p>
+             <p class= "font-weight-light m-0">Is the client bringing their own band?</p>
              <div class= "custom-control custom-radio">
               <input id="recording_session_band_yes" type="radio" class="custom-control-input" name="recording_session[band?]" value="true">
                <label for= "recording_session_band_yes" class="custom-control-label"> Yes </label>
@@ -62,7 +62,7 @@
               <input id="recording_session_band_no" type="radio"class="custom-control-input"name="recording_session[band?]" value="false">
               <label for="recording_session_band_no"  class="custom-control-label"> No </label>
             </div>
-            <p class= "font-weight-light">Is the client bringing their own drums?</p>
+            <p class= "font-weight-light m-0">Is the client bringing their own drums?</p>
             <div class= "custom-control custom-radio">
             <input id="recording_session_drums_yes" type="radio" class="custom-control-input"name="recording_session[drums?]" value="true">
             <label for= "recording_session_drums_yes" class="custom-control-label"> Yes </label>
@@ -72,18 +72,18 @@
             <label for= "recording_session_drums_no" class="custom-control-label"> No </label>
             </div>
   
-    <h5><label for="recording_session_comments"> Additional Comments Regarding Client </h5>
+    <h5 class="font-weight-light mt-3"><label for="recording_session_comments"> Additional Comments</label> </h5>
     <textarea class="form-control" id="recording_session_comments" name="recording_session[additional_comments]" rows="4" cols="50"></textarea>
  </br>
- <button type="submit" class="btn btn-primary">Create Session</button>
+ <button type="submit" class="btn btn-primary border">Create Session</button>
     </div>
     </form>
 
     <% if flash[:error] %>
-<h3><%= flash[:error] %> </h3>
+<h3 class="font-weight-light"><%= flash[:error] %> </h3>
 <% end %>
 
   <% if flash[:end_date] %>
-<h3><%= flash[:end_date] %> </h3>
+<h3 class="font-weight-light"><%= flash[:end_date] %> </h3>
 <% end %>
 
