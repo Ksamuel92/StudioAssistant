@@ -1,55 +1,54 @@
 <h1 class="text-center display-1">Your Sessions</h1>
-<% if flash[:error]%>
+  <% if flash[:error]%>
     <h6><%= flash[:error]%></h6>
-<% end %>
-<% if @recording_sessions != [] %>
-   <p class="font-weight-thin text-center text-muted"><%=current_user.name%>, here's what's on the books</p>
+  <% end %>
+  <% if @recording_sessions != [] %>
+    <p class="font-weight-thin text-center text-muted"><%=current_user.name%>, here's what's on the books</p>
     <table class="table table-bordered table-hover"> 
-    <thead>
-    <tr>
-      <th scope="col">Client</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Session Options</th>
-    </tr>
-  </thead>    
+      <thead>
+        <tr>
+          <th scope="col">Client</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Session Options</th>
+        </tr>
+      </thead>    
       <tbody>      
         <%@recording_sessions.all.each do |session|%>
-      <% if session.is_session_today? %> <tr class ="table-danger"> <% else %> <tr> <% end%>
-      <th scope="row"><%= session.client.name %></th>
-      <td><%= session.start_date %></td>
-      <td class = "text-center"><% if session.genre = "" %> None Given <% else %> <%= session.genre %> <%end%></td>
-      <td class = "text-center">
-      <div class = "btn-group" role ="group" aria-label= "View, edit or delete">
-      <a class= "center-text" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"><button class = "btn btn-primary border" > View </button> </a>
-      <a class = "mx-auto" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/edit"><button class = "btn btn-primary border" >Edit </button> </a>
-      <form method="post" action="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/delete">
-      <input type="hidden" name="_method" value="delete">
-      <button type=submit class = "btn btn-danger border ml-3"> Delete</button>
-      </form>
-      </div>
-       </td>
-      <% end %>
-    </tbody>
-</table>
-
-                 
-<% else %>
+        <% if session.is_session_today? %> <tr class ="table-danger"> <% else %> <tr> <% end%>
+          <th scope="row"><%= session.client.name %></th>
+            <td><%= session.start_date %></td>
+            <td class = "text-center"><% if session.genre = "" %> None Given <% else %> <%= session.genre %> <%end%></td>
+            <td class = "text-center">
+              <div class = "btn-group" role ="group" aria-label= "View, edit or delete">
+                <a class= "center-text" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>"><button class = "btn btn-primary border" > View </button> </a>
+                <a class = "mx-auto" href="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/edit"><button class = "btn btn-primary border" >Edit </button> </a>
+                <form method="post" action="/recordingsessions/<%= session.client.slug %>/<%= session.id %>/delete">
+                  <input type="hidden" name="_method" value="delete">
+                  <button type=submit class = "btn btn-danger border ml-3"> Delete</button>
+                </form>
+              </div>
+            </td>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
     <p class="text-center lead"> Create a new session below</p>
-<% end %>
+  <% end %>
 
 
    
-        <% if @clients != [] %> 
-        <h5 class = "font-weight-thin m-1">Or book a new session with a current client! </h5>
-        <div class="btn-group " role ="group" aria-label= "Book with a current client.">
-        <%@clients.each do |client|%>
+<% if @clients != [] %> 
+  <h5 class = "font-weight-thin m-1">Or book a new session with a current client! </h5>
+  <div class="btn-group " role ="group" aria-label= "Book with a current client.">
+      <%@clients.each do |client|%>
         <a href= "/recordingsessions/<%= client.slug %>/new"><button type="button" class= "btn btn-outline-primary m-1 border"><%= client.name%></button></a>
-        <% end %>
-            <% end %>
-        </div>
-        <hr>
-        <div class="text-center m-1">
-        <a href="/recordingsessions/new"><button type="button" class ="btn btn-primary">New Session</button></a>
-        <a href="/logout"><button type="button" class = "btn btn-primary">Log Out</button></a>
-       </div>
+      <% end %>
+  </div>
+<% end %>
+      
+<hr>
+  <div class="text-center m-1">
+    <a href="/recordingsessions/new"><button type="button" class ="btn btn-primary">New Session</button></a>
+    <a href="/logout"><button type="button" class = "btn btn-primary">Log Out</button></a>
+  </div>
