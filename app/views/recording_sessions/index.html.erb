@@ -38,6 +38,12 @@
     <p class="text-center lead"> Create a new session below</p>
   <% end %>
 
+<form method = "get" action="/clients">
+  <label for="site-search">Search Client by Name:</label>
+    <input type="search" id="site-search" name="q"
+       aria-label="Search through Client Datase">
+  <button type = "submit" class = "btn btn-primary"> Search Client </button>
+  </form>
 
    
 <% if @clients != [] %> 
