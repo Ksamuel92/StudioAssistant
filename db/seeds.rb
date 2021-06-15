@@ -1,8 +1,5 @@
 require 'faker'
 
-# Faker::Name.name      #=> "Christophe Bartell"
-
-# Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
 
 User.create(
   name: "#{Faker::Name.name}",

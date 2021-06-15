@@ -1,5 +1,4 @@
 class RecordingSession < ActiveRecord::Base
-  #model associations
   belongs_to :user
   belongs_to :client
 
