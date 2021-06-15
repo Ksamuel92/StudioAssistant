@@ -55,26 +55,26 @@ helpers do
 
   def current_user
     @user ||= User.find_by(id: session[:user_id]) if validate_login
-    end
+  end
 
   
-    def log_out
+  def log_out
       session.delete(:user_id)
       redirect to "/"
-    end
+  end
   
-    def remove_comma_from_integer(integer)
+  def remove_comma_from_integer(integer)
       integer.gsub!(/[,]/,"")
-    end
+  end
 
-    def set_recording_session_and_client
-      @recording_session = RecordingSession.find_by_id(params[:id])
-      @client = Client.find_by_slug(params[:slug])
+  def set_recording_session_and_client
+    @recording_session = RecordingSession.find_by_id(params[:id])
+    @client = Client.find_by_slug(params[:slug])
       if !@recording_session || !@client
         flash[:error] = 'Something went wrong! Check your URL and try again.'
         redirect to '/recordingsessions'
       end
-    end
+  end
 
 
     def validate_login
